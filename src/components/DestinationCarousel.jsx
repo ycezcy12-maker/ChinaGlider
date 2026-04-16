@@ -1,242 +1,319 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { destinations } from '../data/destinationData';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { slides } from '../data/destinationData';
 
 const DestinationCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [prevIndex, setPrevIndex] = useState(null);
+  const [animating, setAnimating] = useState(false);
+  const autoPlayRef = useRef(true);
 
   useEffect(() => {
-    if (!isAutoPlay) return;
-
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % destinations.length);
-    }, 5000);
-
+      if (autoPlayRef.current) {
+        advance(1);
+      }
+    }, 6000);
     return () => clearInterval(interval);
-  }, [isAutoPlay]);
+  }, []);
 
-  const goToPrevious = () => {
-    setIsAutoPlay(false);
-    setCurrentIndex((prev) => (prev - 1 + destinations.length) % destinations.length);
+  const advance = (dir) => {
+    if (animating) return;
+    setAnimating(true);
+    setPrevIndex(currentIndex);
+    setCurrentIndex((prev) => (prev + dir + slides.length) % slides.length);
+    setTimeout(() => setAnimating(false), 700);
   };
 
-  const goToNext = () => {
-    setIsAutoPlay(false);
-    setCurrentIndex((prev) => (prev + 1) % destinations.length);
+  const goTo = (idx) => {
+    if (animating || idx === currentIndex) return;
+    autoPlayRef.current = false;
+    setAnimating(true);
+    setPrevIndex(currentIndex);
+    setCurrentIndex(idx);
+    setTimeout(() => setAnimating(false), 700);
   };
 
-  const current = destinations[currentIndex];
+  const handleManual = (dir) => {
+    autoPlayRef.current = false;
+    advance(dir);
+  };
+
+  const current = slides[currentIndex];
 
   return (
-    <section className="destination-carousel-section">
-      <div className="carousel-wrapper">
-        <div className="carousel-main">
-          <img src={current.artworkUrl} alt={current.name} className="carousel-image" />
-          <div className="carousel-overlay">
-            <div className="carousel-content">
-              <h3 className="carousel-tagline">{current.tagline}</h3>
-              <h2 className="carousel-title">{current.name}</h2>
-              <p className="carousel-description">{current.description}</p>
-              <div className="carousel-characteristics">
-                {current.characteristics.map((char, idx) => (
-                  <span key={idx} className="characteristic-tag">{char}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+    <section className="hero-carousel">
+      {slides.map((slide, idx) => (
+        <div
+          key={slide.id}
+          className={`hero-slide ${idx === currentIndex ? 'active' : ''} ${idx === prevIndex && animating ? 'exit' : ''}`}
+          aria-hidden={idx !== currentIndex}
+        >
+          <img src={slide.imageUrl} alt={slide.tagline} className="slide-bg" />
+          <div className={`slide-overlay ${slide.type === 'intro' ? 'overlay-intro' : 'overlay-dest'}`} />
         </div>
+      ))}
 
-        <div className="carousel-controls">
-          <button className="carousel-btn prev" onClick={goToPrevious} aria-label="Previous">
-            <ChevronLeft size={24} />
-          </button>
-          <div className="carousel-indicators">
-            {destinations.map((_, idx) => (
-              <div
-                key={idx}
-                className={`indicator ${idx === currentIndex ? 'active' : ''}`}
-                onClick={() => {
-                  setIsAutoPlay(false);
-                  setCurrentIndex(idx);
-                }}
-              />
-            ))}
-          </div>
-          <button className="carousel-btn next" onClick={goToNext} aria-label="Next">
-            <ChevronRight size={24} />
-          </button>
+      <div className="hero-carousel-content">
+        <div key={currentIndex} className="slide-text-block fade-up">
+          <p className="slide-tagline">{current.tagline}</p>
+          <h1 className="slide-title">{current.title}</h1>
+          {current.subtitle && (
+            <h2 className="slide-subtitle">{current.subtitle}</h2>
+          )}
+          <p className="slide-description">{current.description}</p>
+          <Link to={current.cta.path} className={`slide-cta ${current.type === 'intro' ? 'cta-primary' : 'cta-secondary'}`}>
+            {current.cta.label} <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+          </Link>
         </div>
       </div>
 
+      <button className="nav-btn nav-prev" onClick={() => handleManual(-1)} aria-label="Previous slide">
+        <ChevronLeft size={28} />
+      </button>
+      <button className="nav-btn nav-next" onClick={() => handleManual(1)} aria-label="Next slide">
+        <ChevronRight size={28} />
+      </button>
+
+      <div className="slide-indicators">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            className={`dot ${idx === currentIndex ? 'dot-active' : ''}`}
+            onClick={() => goTo(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
       <style>{`
-        .destination-carousel-section {
-          padding: 60px 0 80px;
-          background-color: #fff;
-        }
-
-        .carousel-wrapper {
+        .hero-carousel {
           position: relative;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-
-        .carousel-main {
-          position: relative;
-          border-radius: var(--border-radius-xl);
+          width: 100%;
+          height: 100vh;
+          min-height: 620px;
           overflow: hidden;
-          aspect-ratio: 16 / 9;
-          height: 500px;
-          box-shadow: var(--shadow-medium);
+          background: #1a1510;
         }
 
-        .carousel-image {
+        .hero-slide {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          transition: opacity 0.7s ease-in-out;
+          pointer-events: none;
+        }
+
+        .hero-slide.active {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .hero-slide.exit {
+          opacity: 0;
+        }
+
+        .slide-bg {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease-out;
+          object-position: center;
+          display: block;
         }
 
-        .carousel-overlay {
+        .slide-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(74, 59, 50, 0.7) 0%, rgba(192, 108, 84, 0.5) 50%, transparent 100%);
+        }
+
+        .overlay-intro {
+          background: linear-gradient(to right, rgba(30, 20, 12, 0.78) 0%, rgba(74, 59, 50, 0.5) 55%, transparent 100%);
+        }
+
+        .overlay-dest {
+          background: linear-gradient(135deg, rgba(20, 15, 10, 0.82) 0%, rgba(74, 59, 50, 0.55) 50%, transparent 100%);
+        }
+
+        .hero-carousel-content {
+          position: absolute;
+          inset: 0;
           display: flex;
-          align-items: flex-end;
-          padding: 60px 50px;
-          z-index: 2;
+          align-items: center;
+          padding: 0 80px;
+          z-index: 10;
+          pointer-events: none;
         }
 
-        .carousel-content {
-          color: white;
-          animation: slideUpFade 0.6s ease-out;
+        .slide-text-block {
+          max-width: 680px;
+          color: #fff;
+          pointer-events: auto;
         }
 
-        @keyframes slideUpFade {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .fade-up {
+          animation: fadeUp 0.65s ease-out both;
         }
 
-        .carousel-tagline {
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: var(--color-accent-gold);
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-bottom: 8px;
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(28px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
-        .carousel-title {
-          font-family: var(--font-heading);
-          font-size: 3.5rem;
+        .slide-tagline {
+          font-size: 0.82rem;
           font-weight: 700;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          color: var(--color-accent-gold);
           margin-bottom: 16px;
+        }
+
+        .slide-title {
+          font-family: var(--font-heading);
+          font-size: 3.2rem;
+          font-weight: 700;
           line-height: 1.1;
+          margin-bottom: 10px;
+          color: #fff;
         }
 
-        .carousel-description {
-          font-size: 1.1rem;
-          font-weight: 300;
+        .slide-subtitle {
+          font-family: var(--font-heading);
+          font-size: 1.8rem;
+          font-weight: 400;
+          font-style: italic;
+          line-height: 1.2;
           margin-bottom: 20px;
-          line-height: 1.6;
-          max-width: 600px;
+          color: rgba(255,255,255,0.85);
         }
 
-        .carousel-characteristics {
-          display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
+        .slide-description {
+          font-size: 1.05rem;
+          font-weight: 300;
+          line-height: 1.7;
+          color: rgba(255,255,255,0.82);
+          margin-bottom: 36px;
+          max-width: 580px;
         }
 
-        .characteristic-tag {
-          background-color: rgba(255, 255, 255, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          padding: 6px 16px;
-          border-radius: 20px;
-          font-size: 0.85rem;
-          font-weight: 500;
-          backdrop-filter: blur(10px);
-        }
-
-        .carousel-controls {
-          display: flex;
+        .slide-cta {
+          display: inline-flex;
           align-items: center;
-          justify-content: space-between;
-          margin-top: 40px;
-          padding: 0 20px;
-        }
-
-        .carousel-btn {
-          background: none;
-          border: none;
-          padding: 12px;
-          cursor: pointer;
-          color: var(--color-accent-terracotta);
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 1rem;
+          padding: 14px 36px;
+          border-radius: 4px;
           transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          width: 48px;
-          height: 48px;
-          background-color: rgba(192, 108, 84, 0.1);
+          letter-spacing: 0.5px;
         }
 
-        .carousel-btn:hover {
-          background-color: rgba(192, 108, 84, 0.2);
-          transform: scale(1.1);
-        }
-
-        .carousel-indicators {
-          display: flex;
-          gap: 12px;
-          justify-content: center;
-          flex: 1;
-        }
-
-        .indicator {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background-color: rgba(74, 59, 50, 0.2);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border: 2px solid transparent;
-        }
-
-        .indicator.active {
+        .cta-primary {
           background-color: var(--color-accent-terracotta);
-          width: 32px;
-          border-radius: 6px;
+          color: #fff;
+          box-shadow: 0 6px 20px rgba(192, 108, 84, 0.45);
+        }
+
+        .cta-primary:hover {
+          background-color: #b85e47;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(192, 108, 84, 0.55);
+        }
+
+        .cta-secondary {
+          background-color: rgba(255, 255, 255, 0.12);
+          color: #fff;
+          border: 1.5px solid rgba(255, 255, 255, 0.55);
+          backdrop-filter: blur(8px);
+        }
+
+        .cta-secondary:hover {
+          background-color: rgba(255, 255, 255, 0.22);
+          border-color: rgba(255, 255, 255, 0.8);
+          transform: translateY(-2px);
+        }
+
+        .nav-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 20;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1.5px solid rgba(255, 255, 255, 0.3);
+          color: #fff;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(8px);
+        }
+
+        .nav-btn:hover {
+          background: rgba(255, 255, 255, 0.25);
+          border-color: rgba(255, 255, 255, 0.6);
+          transform: translateY(-50%) scale(1.08);
+        }
+
+        .nav-prev { left: 28px; }
+        .nav-next { right: 28px; }
+
+        .slide-indicators {
+          position: absolute;
+          bottom: 36px;
+          left: 80px;
+          display: flex;
+          gap: 10px;
+          z-index: 20;
+        }
+
+        .dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.35);
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          padding: 0;
+        }
+
+        .dot-active {
+          background: #fff;
+          width: 28px;
+          border-radius: 5px;
         }
 
         @media (max-width: 768px) {
-          .carousel-main {
-            height: 350px;
+          .hero-carousel-content {
+            padding: 0 28px;
+            align-items: flex-end;
+            padding-bottom: 100px;
           }
 
-          .carousel-overlay {
-            padding: 40px 30px;
+          .slide-title {
+            font-size: 2.2rem;
           }
 
-          .carousel-title {
-            font-size: 2.5rem;
+          .slide-subtitle {
+            font-size: 1.3rem;
           }
 
-          .carousel-description {
-            font-size: 1rem;
+          .slide-description {
+            font-size: 0.95rem;
           }
 
-          .carousel-controls {
-            flex-direction: column;
-            gap: 20px;
+          .nav-prev { left: 14px; }
+          .nav-next { right: 14px; }
+
+          .slide-indicators {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 24px;
           }
         }
       `}</style>

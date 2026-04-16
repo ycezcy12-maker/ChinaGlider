@@ -1,50 +1,62 @@
-export const destinations = [
+export const slides = [
   {
     id: 1,
-    name: "Shanghai",
-    tagline: "Modern Metropolis",
-    description: "Where ancient traditions meet cutting-edge modernity",
-    artworkUrl: "https://images.pexels.com/photos/3808517/pexels-photo-3808517.jpeg",
-    characteristics: ["Cosmopolitan", "Fast-paced", "Iconic Skyline"]
+    type: "intro",
+    tagline: "Your Journey Starts Here",
+    title: "Discover Your Travel MBTI",
+    subtitle: "and Customized Dive-In Itinerary",
+    description: "Experience the city through a journey tailored to your unique travel personality. From modern skyline to ancient cultural heritage.",
+    cta: { label: "Start Your Journey", path: "/quiz" },
+    imageUrl: "https://images.pexels.com/photos/3804618/pexels-photo-3804618.jpeg"
   },
   {
     id: 2,
-    name: "Beijing",
-    tagline: "Imperial Capital",
-    description: "Centuries of history carved into magnificent landmarks",
-    artworkUrl: "https://images.pexels.com/photos/3806281/pexels-photo-3806281.jpeg",
-    characteristics: ["Historical", "Majestic", "Cultural"]
+    type: "destination",
+    tagline: "Shanghai",
+    title: "From the Historic French Concession to the Modern Skyline",
+    subtitle: "",
+    description: "Citywalk through the most delicate streets and shops. Discover jazz bars, art deco architecture and world-class cuisine along the Bund.",
+    cta: { label: "Discover the Spot", path: "/poi-selection" },
+    imageUrl: "https://images.pexels.com/photos/2846217/pexels-photo-2846217.jpeg"
   },
   {
     id: 3,
-    name: "Xi'an",
-    tagline: "Ancient Silk Road",
-    description: "Gateway to the legendary trade routes of empires",
-    artworkUrl: "https://images.pexels.com/photos/3808515/pexels-photo-3808515.jpeg",
-    characteristics: ["Ancient", "Spiritual", "Adventurous"]
+    type: "destination",
+    tagline: "Beijing",
+    title: "Imperial Grandeur Meets Living Culture",
+    subtitle: "",
+    description: "Walk the same stones as emperors. From the Forbidden City to hidden hutong alleyways, Beijing holds centuries of stories waiting to be told.",
+    cta: { label: "View the Itinerary", path: "/trip-basics" },
+    imageUrl: "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg"
   },
   {
     id: 4,
-    name: "Chengdu",
-    tagline: "Land of Bamboo",
-    description: "Serene mountains and peaceful temples in misty valleys",
-    artworkUrl: "https://images.pexels.com/photos/3804618/pexels-photo-3804618.jpeg",
-    characteristics: ["Tranquil", "Nature", "Wildlife"]
+    type: "destination",
+    tagline: "Western Sichuan",
+    title: "High Plateau, Sacred Peaks and Tibetan Soul",
+    subtitle: "",
+    description: "Journey through dramatic highlands, turquoise lakes and ancient monasteries. A rare wilderness that feels like the edge of the world.",
+    cta: { label: "View the Itinerary", path: "/trip-basics" },
+    imageUrl: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg"
   },
   {
     id: 5,
-    name: "Guilin",
-    tagline: "Karst Dreams",
-    description: "Otherworldly limestone peaks reflecting in timeless waters",
-    artworkUrl: "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg",
-    characteristics: ["Scenic", "Artistic", "Mystical"]
+    type: "destination",
+    tagline: "Guilin",
+    title: "Karst Peaks Rising From Emerald Waters",
+    subtitle: "",
+    description: "Drift down the Li River past limestone towers and misty valleys. A landscape so surreal it has inspired Chinese ink painters for a thousand years.",
+    cta: { label: "Discover the Spot", path: "/poi-selection" },
+    imageUrl: "https://images.pexels.com/photos/3574523/pexels-photo-3574523.jpeg"
   },
   {
     id: 6,
-    name: "Lhasa",
-    tagline: "Roof of the World",
-    description: "Spiritual awakening among the highest peaks and sacred sites",
-    artworkUrl: "https://images.pexels.com/photos/3806283/pexels-photo-3806283.jpeg",
-    characteristics: ["Spiritual", "High-altitude", "Sacred"]
+    type: "destination",
+    tagline: "Silk Road",
+    title: "Desert Fortresses, Cave Murals and Ancient Trade Routes",
+    subtitle: "",
+    description: "Follow the ancient caravans from Xi'an through Dunhuang to Kashgar. Every oasis holds a civilization's worth of art, faith and memory.",
+    cta: { label: "View the Itinerary", path: "/trip-basics" },
+    imageUrl: "https://images.pexels.com/photos/3889742/pexels-photo-3889742.jpeg"
   }
 ];
