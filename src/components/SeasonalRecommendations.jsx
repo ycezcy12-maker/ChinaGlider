@@ -1,199 +1,464 @@
-import React from 'react';
-import { Leaf, Cloud, Sun, Snowflake } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, MapPin } from 'lucide-react';
+import { solarTerms, seasonColors } from '../data/solarTermsData';
+
+const seasons = [
+  { key: "spring", label: "春 Spring" },
+  { key: "summer", label: "夏 Summer" },
+  { key: "autumn", label: "秋 Autumn" },
+  { key: "winter", label: "冬 Winter" }
+];
 
 const SeasonalRecommendations = () => {
-  const recommendations = [
-    {
-      id: 1,
-      season: "Spring",
-      icon: Leaf,
-      color: "var(--color-accent-teal)",
-      spots: [
-        { name: "West Lake Plum Blossoms", city: "Hangzhou", rating: "4.8/5" },
-        { name: "Cherry Blossom Festival", city: "Wuhan", rating: "4.7/5" },
-        { name: "Peony Garden", city: "Luoyang", rating: "4.6/5" }
-      ]
-    },
-    {
-      id: 2,
-      season: "Summer",
-      icon: Sun,
-      color: "var(--color-accent-gold)",
-      spots: [
-        { name: "Yellow Mountains Peak", city: "Anhui", rating: "4.9/5" },
-        { name: "Li River Bamboo Rafting", city: "Guilin", rating: "4.8/5" },
-        { name: "Zhangjiajie Glass Walkway", city: "Hunan", rating: "4.7/5" }
-      ]
-    },
-    {
-      id: 3,
-      season: "Autumn",
-      icon: Cloud,
-      color: "var(--color-accent-terracotta)",
-      spots: [
-        { name: "Great Wall Golden Hour", city: "Beijing", rating: "4.9/5" },
-        { name: "Jinshanling Trail", city: "Hebei", rating: "4.7/5" },
-        { name: "Maple Grove", city: "Suzhou", rating: "4.6/5" }
-      ]
-    },
-    {
-      id: 4,
-      season: "Winter",
-      icon: Snowflake,
-      color: "#8B9CC0",
-      spots: [
-        { name: "Harbin Ice Festival", city: "Harbin", rating: "4.8/5" },
-        { name: "Hot Springs Valley", city: "Yangshuo", rating: "4.7/5" },
-        { name: "Tiger Leaping Gorge", city: "Yunnan", rating: "4.8/5" }
-      ]
-    }
-  ];
+  const [activeSeason, setActiveSeason] = useState("spring");
+  const [selectedTerm, setSelectedTerm] = useState(null);
+
+  const filtered = solarTerms.filter(t => t.season === activeSeason);
+  const colors = seasonColors[activeSeason];
 
   return (
-    <section className="seasonal-recommendations-section">
+    <section className="solar-section">
       <div className="container">
-        <div className="section-header text-center">
-          <h2>Seasonal Recommendations</h2>
-          <p>Discover the best tourism spots for each season across China</p>
+        <div className="solar-header">
+          <h2 className="solar-title">节气旅行</h2>
+          <p className="solar-subtitle">Follow China's 24 Solar Terms — each a perfect moment to explore a new corner of the land</p>
+
+          <div className="season-tabs">
+            {seasons.map(s => (
+              <button
+                key={s.key}
+                className={`season-tab ${activeSeason === s.key ? 'tab-active' : ''}`}
+                style={activeSeason === s.key ? {
+                  backgroundColor: seasonColors[s.key].accent,
+                  color: '#fff',
+                  borderColor: seasonColors[s.key].accent
+                } : {}}
+                onClick={() => setActiveSeason(s.key)}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="seasonal-grid">
-          {recommendations.map((season) => {
-            const IconComponent = season.icon;
-            return (
-              <div key={season.id} className="seasonal-card">
-                <div className="seasonal-icon" style={{ color: season.color }}>
-                  <IconComponent size={40} />
-                </div>
-                <h3 className="seasonal-title">{season.season}</h3>
-
-                <div className="spots-list">
-                  {season.spots.map((spot, idx) => (
-                    <div key={idx} className="spot-item">
-                      <div className="spot-info">
-                        <p className="spot-name">{spot.name}</p>
-                        <p className="spot-city">{spot.city}</p>
-                      </div>
-                      <span className="spot-rating">{spot.rating}</span>
-                    </div>
-                  ))}
+        <div className="terms-grid">
+          {filtered.map(term => (
+            <div
+              key={term.id}
+              className="term-card"
+              style={{ '--card-accent': colors.accent }}
+              onClick={() => setSelectedTerm(term)}
+            >
+              <div className="term-image-wrap">
+                <img src={term.imageUrl} alt={term.name} className="term-image" />
+                <div className="term-image-overlay" />
+                <div className="term-badge">
+                  <span className="term-date">{term.date}</span>
                 </div>
               </div>
-            );
-          })}
+              <div className="term-body">
+                <div className="term-name-row">
+                  <h3 className="term-name">{term.name}</h3>
+                  <span className="term-pinyin">{term.pinyin}</span>
+                </div>
+                <p className="term-meaning">{term.meaning}</p>
+                <p className="term-dest-count">
+                  <MapPin size={13} style={{ marginRight: 4, verticalAlign: 'middle' }} />
+                  {term.destinations.length} destinations
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
+      {selectedTerm && (
+        <div className="modal-backdrop" onClick={() => setSelectedTerm(null)}>
+          <div className="modal-panel" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedTerm(null)}>
+              <X size={20} />
+            </button>
+
+            <div className="modal-hero">
+              <img src={selectedTerm.imageUrl} alt={selectedTerm.name} className="modal-hero-img" />
+              <div className="modal-hero-overlay" />
+              <div className="modal-hero-text">
+                <p className="modal-date">{selectedTerm.date}</p>
+                <h2 className="modal-term-name">{selectedTerm.name}</h2>
+                <p className="modal-term-pinyin">{selectedTerm.pinyin} · {selectedTerm.meaning}</p>
+              </div>
+            </div>
+
+            <div className="modal-body">
+              <h3 className="modal-recs-title">推荐旅行地</h3>
+              <div className="modal-dest-list">
+                {selectedTerm.destinations.map((dest, idx) => (
+                  <div key={idx} className="modal-dest-item">
+                    <div className="dest-header">
+                      <span className="dest-name">{dest.name}</span>
+                      <span className="dest-city">
+                        <MapPin size={13} style={{ marginRight: 3 }} />{dest.city}
+                      </span>
+                    </div>
+                    <p className="dest-reason">{dest.reason}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style>{`
-        .seasonal-recommendations-section {
-          padding: 80px 0;
-          background-color: #fff;
-        }
-
-        .section-header {
-          margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-          font-size: 2.5rem;
-          margin-bottom: 16px;
-          color: var(--color-accent-teal);
-        }
-
-        .section-header p {
-          color: var(--color-text-secondary);
-          font-size: 1.1rem;
-        }
-
-        .seasonal-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 30px;
-        }
-
-        .seasonal-card {
+        .solar-section {
+          padding: 90px 0 100px;
           background: var(--color-bg-paper);
-          border-radius: var(--border-radius-lg);
-          padding: 40px 30px;
-          box-shadow: none;
-          border: 1px solid rgba(0, 0, 0, 0.03);
-          transition: all 0.3s ease;
-          position: relative;
         }
 
-        .seasonal-card:hover {
-          transform: translateY(-12px);
-          box-shadow: var(--shadow-soft);
-          background: #fff;
+        .solar-header {
+          text-align: center;
+          margin-bottom: 56px;
         }
 
-        .seasonal-icon {
-          width: 70px;
-          height: 70px;
-          background-color: rgba(0, 0, 0, 0.02);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 20px;
-        }
-
-        .seasonal-title {
+        .solar-title {
           font-family: var(--font-heading);
-          font-size: 1.5rem;
-          margin-bottom: 24px;
+          font-size: 3rem;
           color: var(--color-text-primary);
+          margin-bottom: 12px;
+          letter-spacing: 0.04em;
         }
 
-        .spots-list {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .spot-item {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          gap: 12px;
-          padding: 12px 0;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .spot-item:last-child {
-          border-bottom: none;
-        }
-
-        .spot-info {
-          flex: 1;
-        }
-
-        .spot-name {
-          font-weight: 600;
-          color: var(--color-text-primary);
-          margin-bottom: 4px;
-          font-size: 0.95rem;
-        }
-
-        .spot-city {
-          font-size: 0.85rem;
+        .solar-subtitle {
           color: var(--color-text-secondary);
+          font-size: 1rem;
+          margin-bottom: 36px;
+          max-width: 560px;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.7;
         }
 
-        .spot-rating {
-          font-weight: 700;
-          color: var(--color-accent-gold);
+        .season-tabs {
+          display: inline-flex;
+          gap: 10px;
+          background: #fff;
+          padding: 6px;
+          border-radius: 50px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .season-tab {
+          padding: 10px 28px;
+          border-radius: 50px;
+          border: 1.5px solid rgba(0,0,0,0.1);
+          background: transparent;
+          cursor: pointer;
           font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--color-text-secondary);
+          transition: all 0.25s ease;
           white-space: nowrap;
         }
 
+        .season-tab:hover {
+          border-color: rgba(0,0,0,0.25);
+          color: var(--color-text-primary);
+        }
+
+        .terms-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          gap: 24px;
+        }
+
+        .term-card {
+          background: #fff;
+          border-radius: 16px;
+          overflow: hidden;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .term-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        }
+
+        .term-image-wrap {
+          position: relative;
+          height: 160px;
+          overflow: hidden;
+        }
+
+        .term-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .term-card:hover .term-image {
+          transform: scale(1.06);
+        }
+
+        .term-image-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.45) 100%);
+        }
+
+        .term-badge {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          background: rgba(0,0,0,0.45);
+          backdrop-filter: blur(6px);
+          padding: 4px 10px;
+          border-radius: 20px;
+        }
+
+        .term-date {
+          color: #fff;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+
+        .term-body {
+          padding: 18px 18px 20px;
+        }
+
+        .term-name-row {
+          display: flex;
+          align-items: baseline;
+          gap: 10px;
+          margin-bottom: 4px;
+        }
+
+        .term-name {
+          font-family: var(--font-heading);
+          font-size: 1.5rem;
+          color: var(--color-text-primary);
+          margin: 0;
+          line-height: 1;
+        }
+
+        .term-pinyin {
+          font-size: 0.78rem;
+          color: var(--color-text-secondary);
+          font-style: italic;
+        }
+
+        .term-meaning {
+          font-size: 0.82rem;
+          color: var(--color-accent-teal);
+          font-weight: 600;
+          margin-bottom: 10px;
+          letter-spacing: 0.3px;
+        }
+
+        .term-dest-count {
+          font-size: 0.8rem;
+          color: var(--color-text-secondary);
+          display: flex;
+          align-items: center;
+          margin: 0;
+        }
+
+        /* Modal */
+        .modal-backdrop {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.55);
+          backdrop-filter: blur(4px);
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          animation: backdropIn 0.25s ease;
+        }
+
+        @keyframes backdropIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+
+        .modal-panel {
+          background: #fff;
+          border-radius: 20px;
+          max-width: 560px;
+          width: 100%;
+          max-height: 88vh;
+          overflow-y: auto;
+          position: relative;
+          animation: panelIn 0.3s ease;
+          box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+        }
+
+        @keyframes panelIn {
+          from { opacity: 0; transform: translateY(24px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          z-index: 10;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: rgba(0,0,0,0.35);
+          border: none;
+          color: #fff;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s ease;
+        }
+
+        .modal-close:hover {
+          background: rgba(0,0,0,0.6);
+        }
+
+        .modal-hero {
+          position: relative;
+          height: 220px;
+          overflow: hidden;
+          border-radius: 20px 20px 0 0;
+        }
+
+        .modal-hero-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .modal-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+        }
+
+        .modal-hero-text {
+          position: absolute;
+          bottom: 24px;
+          left: 28px;
+          color: #fff;
+        }
+
+        .modal-date {
+          font-size: 0.78rem;
+          font-weight: 600;
+          letter-spacing: 1.5px;
+          color: var(--color-accent-gold);
+          margin-bottom: 4px;
+          text-transform: uppercase;
+        }
+
+        .modal-term-name {
+          font-family: var(--font-heading);
+          font-size: 2.8rem;
+          line-height: 1;
+          margin-bottom: 6px;
+          color: #fff;
+        }
+
+        .modal-term-pinyin {
+          font-size: 0.88rem;
+          color: rgba(255,255,255,0.8);
+        }
+
+        .modal-body {
+          padding: 28px 28px 32px;
+        }
+
+        .modal-recs-title {
+          font-family: var(--font-heading);
+          font-size: 1.1rem;
+          color: var(--color-text-primary);
+          margin-bottom: 20px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid rgba(0,0,0,0.07);
+        }
+
+        .modal-dest-list {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .modal-dest-item {
+          padding: 18px 20px;
+          background: var(--color-bg-paper);
+          border-radius: 12px;
+          border-left: 3px solid var(--color-accent-terracotta);
+        }
+
+        .dest-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 8px;
+          gap: 12px;
+        }
+
+        .dest-name {
+          font-weight: 700;
+          color: var(--color-text-primary);
+          font-size: 1rem;
+        }
+
+        .dest-city {
+          display: flex;
+          align-items: center;
+          font-size: 0.8rem;
+          color: var(--color-text-secondary);
+          white-space: nowrap;
+        }
+
+        .dest-reason {
+          font-size: 0.88rem;
+          color: var(--color-text-secondary);
+          line-height: 1.7;
+          margin: 0;
+        }
+
         @media (max-width: 768px) {
-          .seasonal-grid {
-            grid-template-columns: 1fr;
+          .terms-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
           }
 
-          .section-header h2 {
-            font-size: 2rem;
+          .season-tabs {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .season-tab {
+            padding: 8px 18px;
+            font-size: 0.82rem;
+          }
+
+          .solar-title {
+            font-size: 2.2rem;
+          }
+
+          .modal-panel {
+            max-height: 92vh;
+          }
+
+          .modal-term-name {
+            font-size: 2.2rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .terms-grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
