@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, MapPin } from 'lucide-react';
+import { X, MapPin, Compass } from 'lucide-react';
 import { solarTerms, seasonColors } from '../data/solarTermsData';
 
 const seasons = [
@@ -62,10 +62,17 @@ const SeasonalRecommendations = () => {
                   <span className="term-chinese">{term.name}</span>
                 </div>
                 <p className="term-pinyin-sub">{term.pinyin}</p>
-                <p className="term-dest-count">
-                  <MapPin size={13} style={{ marginRight: 4, verticalAlign: 'middle' }} />
-                  {term.destinations.length} destinations
-                </p>
+                <div className="term-tags">
+                  {term.tags && term.tags.map((tag, i) => (
+                    <span key={i} className="term-tag">{tag}</span>
+                  ))}
+                </div>
+                {term.travelClue && (
+                  <p className="term-clue">
+                    <Compass size={12} style={{ marginRight: 5, verticalAlign: 'middle', flexShrink: 0 }} />
+                    {term.travelClue}
+                  </p>
+                )}
               </div>
             </div>
           ))}
@@ -261,12 +268,34 @@ const SeasonalRecommendations = () => {
           margin-bottom: 10px;
         }
 
-        .term-dest-count {
-          font-size: 0.8rem;
-          color: var(--color-text-secondary);
+        .term-tags {
           display: flex;
-          align-items: center;
+          flex-wrap: wrap;
+          gap: 5px;
+          margin-bottom: 10px;
+        }
+
+        .term-tag {
+          font-size: 0.68rem;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          color: var(--card-accent, #5D9B6B);
+          background: color-mix(in srgb, var(--card-accent, #5D9B6B) 10%, transparent);
+          border: 1px solid color-mix(in srgb, var(--card-accent, #5D9B6B) 25%, transparent);
+          padding: 3px 8px;
+          border-radius: 20px;
+          white-space: nowrap;
+        }
+
+        .term-clue {
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+          line-height: 1.5;
           margin: 0;
+          display: flex;
+          align-items: flex-start;
+          gap: 2px;
+          font-style: italic;
         }
 
         /* Modal */

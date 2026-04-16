@@ -7,6 +7,8 @@ export const solarTerms = [
     date: "Feb 3–5",
     season: "spring",
     imageUrl: "https://images.pexels.com/photos/3798396/pexels-photo-3798396.jpeg",
+    tags: ["Cherry Blossom", "Plum Flower", "Misty Waterways"],
+    travelClue: "First blooms open — seek plum blossoms and early spring green before the crowds arrive.",
     destinations: [
       {
         name: "West Lake",
@@ -33,6 +35,8 @@ export const solarTerms = [
     date: "Feb 18–20",
     season: "spring",
     imageUrl: "https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg",
+    tags: ["Misty Mountains", "Ancient Water Towns", "Ink-wash Scenery"],
+    travelClue: "Drizzle transforms landscapes into ink paintings — embrace the mist rather than avoid it.",
     destinations: [
       {
         name: "Qingcheng Mountain",
@@ -54,6 +58,8 @@ export const solarTerms = [
     date: "Mar 5–7",
     season: "spring",
     imageUrl: "https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg",
+    tags: ["Spring Thunder", "Tea Garden", "Forest Trails"],
+    travelClue: "Nature stirs after winter — the first thunder signals the perfect time for tea picking and river rafting.",
     destinations: [
       {
         name: "Wuyi Mountains",
@@ -75,6 +81,8 @@ export const solarTerms = [
     date: "Mar 20–21",
     season: "spring",
     imageUrl: "https://images.pexels.com/photos/97778/pexels-photo-97778.jpeg",
+    tags: ["Rapeseed Fields", "Peony Festival", "Day = Night"],
+    travelClue: "Equal days and nights mark peak bloom — golden rapeseed valleys and the Peony Festival peak simultaneously.",
     destinations: [
       {
         name: "Wuyuan",
@@ -101,6 +109,8 @@ export const solarTerms = [
     date: "Apr 4–6",
     season: "spring",
     imageUrl: "https://images.pexels.com/photos/1772973/pexels-photo-1772973.jpeg",
+    tags: ["Sea of Clouds", "Classical Gardens", "Crystal Air"],
+    travelClue: "Air is clearest of the year — mountain clouds and garden greenery are at their most vivid.",
     destinations: [
       {
         name: "Huangshan",
@@ -122,6 +132,8 @@ export const solarTerms = [
     date: "Apr 19–21",
     season: "spring",
     imageUrl: "https://images.pexels.com/photos/2884905/pexels-photo-2884905.jpeg",
+    tags: ["Longjing Tea", "Mist Islands", "Spring Harvest"],
+    travelClue: "Last chance for the season's finest tea — Longjing leaves are hand-picked in the final days before Grain Rain.",
     destinations: [
       {
         name: "Thousand Island Lake",
@@ -143,6 +155,8 @@ export const solarTerms = [
     date: "May 5–7",
     season: "summer",
     imageUrl: "https://images.pexels.com/photos/33231945/pexels-photo-33231945.jpeg",
+    tags: ["Clear Skies", "Mountain Ridges", "Naxi Culture"],
+    travelClue: "Before the heat sets in — the clearest skies and most comfortable highland temperatures of the year.",
     destinations: [
       {
         name: "Zhangjiajie",
@@ -164,6 +178,8 @@ export const solarTerms = [
     date: "May 20–22",
     season: "summer",
     imageUrl: "https://images.pexels.com/photos/1726619/pexels-photo-1726619.jpeg",
+    tags: ["Mirror Terraces", "Alpine Lakes", "Sky Reflection"],
+    travelClue: "Flooded terraces become giant mirrors — the most photogenic window of the year at Yuanyang.",
     destinations: [
       {
         name: "Yuanyang Rice Terraces",
@@ -185,6 +201,8 @@ export const solarTerms = [
     date: "Jun 5–7",
     season: "summer",
     imageUrl: "https://images.pexels.com/photos/5546078/pexels-photo-5546078.jpeg",
+    tags: ["Lavender Fields", "Rapeseed Bloom", "Deep Blue Lake"],
+    travelClue: "Lavender and rapeseed bloom together — Qinghai Lake's shores burst with purple and gold.",
     destinations: [
       {
         name: "Qinghai Lake",
@@ -206,6 +224,8 @@ export const solarTerms = [
     date: "Jun 21–22",
     season: "summer",
     imageUrl: "https://images.pexels.com/photos/6877860/pexels-photo-6877860.jpeg",
+    tags: ["Endless Steppe", "Longest Day", "Grassland Ride"],
+    travelClue: "Longest day of the year — ride the grasslands of Inner Mongolia under a sky that never seems to darken.",
     destinations: [
       {
         name: "Hulunbuir Grasslands",
@@ -227,6 +247,8 @@ export const solarTerms = [
     date: "Jul 6–8",
     season: "summer",
     imageUrl: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg",
+    tags: ["Jade Crater Lake", "Bamboo Forest", "Highland Cool"],
+    travelClue: "Escape the lowland heat — highland destinations stay 5–10°C cooler throughout July.",
     destinations: [
       {
         name: "Changbai Mountain",
@@ -248,6 +270,8 @@ export const solarTerms = [
     date: "Jul 22–24",
     season: "summer",
     imageUrl: "https://images.pexels.com/photos/15236050/pexels-photo-15236050.jpeg",
+    tags: ["Volcanic Lakes", "20°C Highland", "Colorful Pools"],
+    travelClue: "Peak heat elsewhere — highland sanctuaries with volcanic lakes hover at a breezy 20°C.",
     destinations: [
       {
         name: "Arxan",
@@ -269,6 +293,8 @@ export const solarTerms = [
     date: "Aug 7–9",
     season: "autumn",
     imageUrl: "https://images.pexels.com/photos/16512172/pexels-photo-16512172.jpeg",
+    tags: ["Birch Gold", "Gemstone Lake", "First Color Change"],
+    travelClue: "Northwest China turns first — catch the season's opening act before the crowds head north.",
     destinations: [
       {
         name: "Kanas Lake",
@@ -290,6 +316,8 @@ export const solarTerms = [
     date: "Aug 22–24",
     season: "autumn",
     imageUrl: "https://images.pexels.com/photos/6877046/pexels-photo-6877046.jpeg",
+    tags: ["Golden Steppe", "Canal Towns", "Autumn Calm"],
+    travelClue: "Crowds thin and temperatures drop — water towns and grasslands enter their most peaceful window.",
     destinations: [
       {
         name: "Bashang Grassland",
@@ -311,6 +339,8 @@ export const solarTerms = [
     date: "Sep 7–9",
     season: "autumn",
     imageUrl: "https://images.pexels.com/photos/17242182/pexels-photo-17242182.jpeg",
+    tags: ["Morning Dew", "Valley Mist", "Karst Reflections"],
+    travelClue: "Dew on pine needles and river mist — mornings become ethereal, best experienced at sunrise.",
     destinations: [
       {
         name: "Huangshan",
@@ -332,6 +362,8 @@ export const solarTerms = [
     date: "Sep 22–24",
     season: "autumn",
     imageUrl: "https://images.pexels.com/photos/1114896/pexels-photo-1114896.jpeg",
+    tags: ["Red Maple Hills", "Harvest Rooftops", "Sacred Peaks"],
+    travelClue: "Peak foliage season begins — Beijing's imperial parks blaze red and Wuyuan rooftops drape with harvest gold.",
     destinations: [
       {
         name: "Fragrant Hills",
@@ -358,6 +390,8 @@ export const solarTerms = [
     date: "Oct 7–9",
     season: "autumn",
     imageUrl: "https://images.pexels.com/photos/2412603/pexels-photo-2412603.jpeg",
+    tags: ["Great Wall Foliage", "Gold Birch Forest", "Morning Fog"],
+    travelClue: "Best time to hike the Great Wall — forest sections turn red and gold with zero summer crowds.",
     destinations: [
       {
         name: "Great Wall",
@@ -379,6 +413,8 @@ export const solarTerms = [
     date: "Oct 23–24",
     season: "autumn",
     imageUrl: "https://images.pexels.com/photos/14010115/pexels-photo-14010115.jpeg",
+    tags: ["Crystal Lake", "Crimson Mountains", "Mosuo Culture"],
+    travelClue: "Frost sharpens the colors — mountain reds peak and lake waters turn crystal clear.",
     destinations: [
       {
         name: "Lugu Lake",
@@ -400,6 +436,8 @@ export const solarTerms = [
     date: "Nov 7–8",
     season: "winter",
     imageUrl: "https://images.pexels.com/photos/8955688/pexels-photo-8955688.jpeg",
+    tags: ["Hot Springs", "Ginkgo Gold", "Volcanic Steam"],
+    travelClue: "Warm springs emerge as the air cools — geothermal destinations hit their most atmospheric moment.",
     destinations: [
       {
         name: "Tengchong",
@@ -421,6 +459,8 @@ export const solarTerms = [
     date: "Nov 22–23",
     season: "winter",
     imageUrl: "https://images.pexels.com/photos/30612337/pexels-photo-30612337.jpeg",
+    tags: ["Northern Lights", "Snow Rooftops", "Quiet Water Town"],
+    travelClue: "First snow settles — northern China's aurora season begins and southern water towns turn monochrome.",
     destinations: [
       {
         name: "Mohe",
@@ -442,6 +482,8 @@ export const solarTerms = [
     date: "Dec 6–8",
     season: "winter",
     imageUrl: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg",
+    tags: ["Snow Village", "Ice Rime Forest", "Fairy Tale Rooftops"],
+    travelClue: "Deep snow transforms villages into fairy tales — northeast China's iconic mushroom-cap snowdrifts reach their peak.",
     destinations: [
       {
         name: "Snow Village",
@@ -463,6 +505,8 @@ export const solarTerms = [
     date: "Dec 21–23",
     season: "winter",
     imageUrl: "https://images.pexels.com/photos/2113565/pexels-photo-2113565.jpeg",
+    tags: ["Ice Palace", "Longest Night", "Neon Glow"],
+    travelClue: "Longest night of the year — Harbin's ice palaces light up in neon on the darkest evening.",
     destinations: [
       {
         name: "Harbin Ice and Snow World",
@@ -484,6 +528,8 @@ export const solarTerms = [
     date: "Jan 5–7",
     season: "winter",
     imageUrl: "https://images.pexels.com/photos/1457812/pexels-photo-1457812.jpeg",
+    tags: ["Tropical Escape", "Winter Flowers", "Beach & Sunshine"],
+    travelClue: "Coldest weeks up north — head south to Hainan or Yunnan for warmth, flowers, and blue skies.",
     destinations: [
       {
         name: "Xishuangbanna",
@@ -505,6 +551,8 @@ export const solarTerms = [
     date: "Jan 20–21",
     season: "winter",
     imageUrl: "https://images.pexels.com/photos/3855633/pexels-photo-3855633.jpeg",
+    tags: ["–40°C Extreme", "Aurora Borealis", "Frozen River"],
+    travelClue: "Year's coldest day — for the adventurous, frozen rivers and aurora at China's northernmost point.",
     destinations: [
       {
         name: "Mohe North Pole Village",

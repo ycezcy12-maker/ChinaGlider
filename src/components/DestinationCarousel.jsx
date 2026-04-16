@@ -51,7 +51,10 @@ const DestinationCarousel = () => {
           aria-hidden={idx !== currentIndex}
         >
           <img src={slide.imageUrl} alt={slide.tagline} className="slide-bg" />
-          <div className={`slide-overlay ${slide.type === 'intro' ? 'overlay-intro' : 'overlay-dest'}`} />
+          <div className="slide-fade-left" />
+          <div className="slide-fade-right" />
+          <div className="slide-fade-top" />
+          <div className="slide-fade-bottom" />
         </div>
       ))}
 
@@ -70,10 +73,10 @@ const DestinationCarousel = () => {
       </div>
 
       <button className="nav-btn nav-prev" onClick={() => handleManual(-1)} aria-label="Previous slide">
-        <ChevronLeft size={28} />
+        <ChevronLeft size={24} />
       </button>
       <button className="nav-btn nav-next" onClick={() => handleManual(1)} aria-label="Next slide">
-        <ChevronRight size={28} />
+        <ChevronRight size={24} />
       </button>
 
       <div className="slide-indicators">
@@ -92,16 +95,16 @@ const DestinationCarousel = () => {
           position: relative;
           width: 100%;
           height: 100vh;
-          min-height: 620px;
+          min-height: 640px;
           overflow: hidden;
-          background: #1a1510;
+          background: #f5ede2;
         }
 
         .hero-slide {
           position: absolute;
           inset: 0;
           opacity: 0;
-          transition: opacity 0.7s ease-in-out;
+          transition: opacity 0.8s ease-in-out;
           pointer-events: none;
         }
 
@@ -118,21 +121,36 @@ const DestinationCarousel = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: center bottom;
           display: block;
         }
 
-        .slide-overlay {
+        .slide-fade-left,
+        .slide-fade-right,
+        .slide-fade-top,
+        .slide-fade-bottom {
           position: absolute;
+          pointer-events: none;
+        }
+
+        .slide-fade-left {
           inset: 0;
+          background: linear-gradient(to right, #f5ede2 0%, rgba(245, 237, 226, 0.6) 20%, transparent 45%);
         }
 
-        .overlay-intro {
-          background: linear-gradient(to right, rgba(30, 20, 12, 0.78) 0%, rgba(74, 59, 50, 0.5) 55%, transparent 100%);
+        .slide-fade-right {
+          inset: 0;
+          background: linear-gradient(to left, #f5ede2 0%, rgba(245, 237, 226, 0.6) 20%, transparent 45%);
         }
 
-        .overlay-dest {
-          background: linear-gradient(135deg, rgba(20, 15, 10, 0.82) 0%, rgba(74, 59, 50, 0.55) 50%, transparent 100%);
+        .slide-fade-top {
+          inset: 0;
+          background: linear-gradient(to bottom, #f5ede2 0%, rgba(245, 237, 226, 0.7) 12%, transparent 35%);
+        }
+
+        .slide-fade-bottom {
+          inset: 0;
+          background: linear-gradient(to top, #f5ede2 0%, rgba(245, 237, 226, 0.4) 15%, transparent 40%);
         }
 
         .hero-carousel-content {
@@ -140,14 +158,15 @@ const DestinationCarousel = () => {
           inset: 0;
           display: flex;
           align-items: center;
-          padding: 0 80px;
+          justify-content: center;
           z-index: 10;
           pointer-events: none;
+          text-align: center;
+          padding: 0 40px;
         }
 
         .slide-text-block {
           max-width: 680px;
-          color: #fff;
           pointer-events: auto;
         }
 
@@ -156,45 +175,48 @@ const DestinationCarousel = () => {
         }
 
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
+          from { opacity: 0; transform: translateY(24px); }
           to   { opacity: 1; transform: translateY(0); }
         }
 
         .slide-tagline {
-          font-size: 0.82rem;
+          font-size: 0.78rem;
           font-weight: 700;
           letter-spacing: 3px;
           text-transform: uppercase;
-          color: var(--color-accent-gold);
-          margin-bottom: 16px;
+          color: var(--color-accent-terracotta);
+          margin-bottom: 14px;
+          opacity: 0.85;
         }
 
         .slide-title {
           font-family: var(--font-heading);
-          font-size: 3.2rem;
+          font-size: 3.4rem;
           font-weight: 700;
           line-height: 1.1;
-          margin-bottom: 10px;
-          color: #fff;
+          margin-bottom: 6px;
+          color: var(--color-text-primary);
+          letter-spacing: -0.02em;
         }
 
         .slide-subtitle {
           font-family: var(--font-heading);
-          font-size: 1.8rem;
-          font-weight: 400;
-          font-style: italic;
+          font-size: 2rem;
+          font-weight: 500;
           line-height: 1.2;
           margin-bottom: 20px;
-          color: rgba(255,255,255,0.85);
+          color: var(--color-accent-gold);
         }
 
         .slide-description {
-          font-size: 1.05rem;
-          font-weight: 300;
+          font-size: 1rem;
+          font-weight: 400;
           line-height: 1.7;
-          color: rgba(255,255,255,0.82);
+          color: var(--color-text-secondary);
           margin-bottom: 36px;
-          max-width: 580px;
+          max-width: 520px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .slide-cta {
@@ -204,33 +226,33 @@ const DestinationCarousel = () => {
           font-weight: 600;
           font-size: 1rem;
           padding: 14px 36px;
-          border-radius: 4px;
+          border-radius: 50px;
           transition: all 0.3s ease;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.3px;
         }
 
         .cta-primary {
           background-color: var(--color-accent-terracotta);
           color: #fff;
-          box-shadow: 0 6px 20px rgba(192, 108, 84, 0.45);
+          box-shadow: 0 6px 24px rgba(192, 108, 84, 0.35);
         }
 
         .cta-primary:hover {
           background-color: #b85e47;
           transform: translateY(-2px);
-          box-shadow: 0 10px 28px rgba(192, 108, 84, 0.55);
+          box-shadow: 0 10px 32px rgba(192, 108, 84, 0.5);
         }
 
         .cta-secondary {
-          background-color: rgba(255, 255, 255, 0.12);
-          color: #fff;
-          border: 1.5px solid rgba(255, 255, 255, 0.55);
+          background-color: rgba(255, 255, 255, 0.65);
+          color: var(--color-text-primary);
+          border: 1.5px solid rgba(0, 0, 0, 0.18);
           backdrop-filter: blur(8px);
         }
 
         .cta-secondary:hover {
-          background-color: rgba(255, 255, 255, 0.22);
-          border-color: rgba(255, 255, 255, 0.8);
+          background-color: rgba(255, 255, 255, 0.85);
+          border-color: rgba(0, 0, 0, 0.35);
           transform: translateY(-2px);
         }
 
@@ -239,11 +261,11 @@ const DestinationCarousel = () => {
           top: 50%;
           transform: translateY(-50%);
           z-index: 20;
-          background: rgba(255, 255, 255, 0.12);
-          border: 1.5px solid rgba(255, 255, 255, 0.3);
-          color: #fff;
-          width: 52px;
-          height: 52px;
+          background: rgba(255, 255, 255, 0.55);
+          border: 1.5px solid rgba(0, 0, 0, 0.1);
+          color: var(--color-text-primary);
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -254,8 +276,8 @@ const DestinationCarousel = () => {
         }
 
         .nav-btn:hover {
-          background: rgba(255, 255, 255, 0.25);
-          border-color: rgba(255, 255, 255, 0.6);
+          background: rgba(255, 255, 255, 0.85);
+          border-color: rgba(0, 0, 0, 0.2);
           transform: translateY(-50%) scale(1.08);
         }
 
@@ -265,17 +287,18 @@ const DestinationCarousel = () => {
         .slide-indicators {
           position: absolute;
           bottom: 36px;
-          left: 80px;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
-          gap: 10px;
+          gap: 8px;
           z-index: 20;
         }
 
         .dot {
-          width: 10px;
-          height: 10px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.35);
+          background: rgba(0, 0, 0, 0.2);
           border: none;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -283,38 +306,31 @@ const DestinationCarousel = () => {
         }
 
         .dot-active {
-          background: #fff;
-          width: 28px;
-          border-radius: 5px;
+          background: var(--color-accent-terracotta);
+          width: 24px;
+          border-radius: 4px;
         }
 
         @media (max-width: 768px) {
           .hero-carousel-content {
-            padding: 0 28px;
-            align-items: flex-end;
-            padding-bottom: 100px;
+            padding: 0 24px;
+            align-items: center;
           }
 
           .slide-title {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
           }
 
           .slide-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
           }
 
           .slide-description {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
           }
 
-          .nav-prev { left: 14px; }
-          .nav-next { right: 14px; }
-
-          .slide-indicators {
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 24px;
-          }
+          .nav-prev { left: 12px; }
+          .nav-next { right: 12px; }
         }
       `}</style>
     </section>
