@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Map, Heart, Compass } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import heroBg from '../assets/上海秋日街景_1822x1024_完整版.jpg';
+import DestinationCarousel from './DestinationCarousel';
+import SeasonalRecommendations from './SeasonalRecommendations';
+import PopularTravelPlans from './PopularTravelPlans';
 
 const LandingPage = () => {
   return (
@@ -29,41 +32,9 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features / How it works */}
-      <section className="features-section">
-        <div className="container">
-          <div className="section-header text-center">
-            <h2>Curated for You</h2>
-            <p>How ChinaGlider crafts your perfect trip</p>
-          </div>
-
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="icon-wrapper">
-                <Heart color="var(--color-accent-terracotta)" size={32} />
-              </div>
-              <h3>Travel MBTI</h3>
-              <p>Take our visual quiz to discover your travel archetype and hidden preferences.</p>
-            </div>
-
-            <div className="feature-card">
-              <div className="icon-wrapper">
-                <Map color="var(--color-accent-teal)" size={32} />
-              </div>
-              <h3>Personalized Spots</h3>
-              <p>Get matched with a curated pool of hidden gems and must-sees that fit your vibe.</p>
-            </div>
-
-            <div className="feature-card">
-              <div className="icon-wrapper">
-                <Compass color="var(--color-accent-gold)" size={32} />
-              </div>
-              <h3>Smart Itinerary</h3>
-              <p>We build a day-by-day plan that balances your energy, interests, and pace.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <DestinationCarousel />
+      <SeasonalRecommendations />
+      <PopularTravelPlans />
 
       <style>{`
         .hero-section {
@@ -140,69 +111,6 @@ const LandingPage = () => {
           font-size: 1.2rem;
         }
 
-        /* Features Section */
-        .features-section {
-          padding: 60px 0 100px; /* Reduced top padding */
-          background-color: #fff; 
-          position: relative;
-          z-index: 2; 
-          margin-top: -5px; /* Fix any sub-pixel gap */
-        }
-
-        .section-header {
-          margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-          font-size: 2.5rem;
-          margin-bottom: 16px;
-          color: var(--color-accent-teal);
-        }
-
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 40px;
-        }
-
-        .feature-card {
-          background: var(--color-bg-paper);
-          padding: 40px 30px;
-          border-radius: var(--border-radius-lg);
-          box-shadow: none;
-          text-align: center;
-          transition: transform 0.3s ease;
-          border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .feature-card:hover {
-          transform: translateY(-10px);
-          box-shadow: var(--shadow-soft);
-          background: #fff;
-        }
-
-        .icon-wrapper {
-          width: 80px;
-          height: 80px;
-          background-color: #fff;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 24px;
-          box-shadow: var(--shadow-soft);
-        }
-
-        .feature-card h3 {
-          font-family: var(--font-heading);
-          font-size: 1.5rem;
-          margin-bottom: 12px;
-        }
-
-        .feature-card p {
-          color: var(--color-text-secondary);
-          font-size: 1rem;
-        }
 
         @media (max-width: 768px) {
           .hero-title {
