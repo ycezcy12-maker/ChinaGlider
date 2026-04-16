@@ -21,15 +21,15 @@ const Layout = ({ children }) => {
       <header className={`main-header ${transparent ? 'header-transparent' : 'header-solid'}`}>
         <div className="container header-content">
           <Link to="/" className="logo">
-            <Compass size={28} color={transparent ? '#DBB469' : 'var(--color-accent-terracotta)'} />
-            <span className={`logo-text ${transparent ? 'logo-light' : ''}`}>ChinaGlider</span>
+            <Compass size={28} color="var(--color-accent-terracotta)" />
+            <span className="logo-text">ChinaGlider</span>
           </Link>
           <nav className="nav-links">
-            <Link to="/" className={`nav-item ${transparent ? 'nav-item-light' : ''}`}>Home</Link>
-            <Link to="/quiz" className={`nav-item ${transparent ? 'nav-item-light' : ''}`}>Travel MBTI</Link>
-            <Link to="/poi-selection" className={`nav-item ${transparent ? 'nav-item-light' : ''}`}>Personalized Spots</Link>
-            <Link to="/trip-basics" className={`nav-item ${transparent ? 'nav-item-light' : ''}`}>Smart Itinerary</Link>
-            <Link to="/starter-pack" className={`nav-item ${transparent ? 'nav-item-light' : ''}`}>Starter Pack</Link>
+            <Link to="/" className="nav-item">Home</Link>
+            <Link to="/quiz" className="nav-item">Travel MBTI</Link>
+            <Link to="/poi-selection" className="nav-item">Personalized Spots</Link>
+            <Link to="/trip-basics" className="nav-item">Smart Itinerary</Link>
+            <Link to="/starter-pack" className="nav-item">Starter Pack</Link>
           </nav>
         </div>
       </header>
@@ -92,10 +92,6 @@ const Layout = ({ children }) => {
           transition: color 0.3s ease;
         }
 
-        .logo-light {
-          color: #fff;
-        }
-
         .nav-links {
           display: flex;
           gap: 32px;
@@ -111,12 +107,7 @@ const Layout = ({ children }) => {
           transition: color 0.3s ease;
         }
 
-        .nav-item-light {
-          color: rgba(255, 255, 255, 0.9);
-        }
-
-        .nav-item:hover,
-        .nav-item-light:hover {
+        .nav-item:hover {
           color: var(--color-accent-gold);
         }
 
