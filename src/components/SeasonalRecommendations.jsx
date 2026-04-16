@@ -3,10 +3,10 @@ import { X, MapPin } from 'lucide-react';
 import { solarTerms, seasonColors } from '../data/solarTermsData';
 
 const seasons = [
-  { key: "spring", label: "春 Spring" },
-  { key: "summer", label: "夏 Summer" },
-  { key: "autumn", label: "秋 Autumn" },
-  { key: "winter", label: "冬 Winter" }
+  { key: "spring", label: "Spring" },
+  { key: "summer", label: "Summer" },
+  { key: "autumn", label: "Autumn" },
+  { key: "winter", label: "Winter" }
 ];
 
 const SeasonalRecommendations = () => {
@@ -20,7 +20,6 @@ const SeasonalRecommendations = () => {
     <section className="solar-section">
       <div className="container">
         <div className="solar-header">
-          <p className="solar-label">节气旅行</p>
           <h2 className="solar-title">Travel by Solar Term</h2>
           <p className="solar-subtitle">China's ancient 24-node calendar reveals the perfect moment to visit each destination — matched to nature's own rhythm.</p>
 
@@ -119,15 +118,6 @@ const SeasonalRecommendations = () => {
         .solar-header {
           text-align: center;
           margin-bottom: 56px;
-        }
-
-        .solar-label {
-          font-size: 0.85rem;
-          font-weight: 700;
-          letter-spacing: 3px;
-          color: var(--color-accent-teal);
-          text-transform: uppercase;
-          margin-bottom: 12px;
         }
 
         .solar-title {
