@@ -20,8 +20,9 @@ const SeasonalRecommendations = () => {
     <section className="solar-section">
       <div className="container">
         <div className="solar-header">
-          <h2 className="solar-title">节气旅行</h2>
-          <p className="solar-subtitle">Follow China's 24 Solar Terms — each a perfect moment to explore a new corner of the land</p>
+          <p className="solar-label">节气旅行</p>
+          <h2 className="solar-title">Travel by Solar Term</h2>
+          <p className="solar-subtitle">China's ancient 24-node calendar reveals the perfect moment to visit each destination — matched to nature's own rhythm.</p>
 
           <div className="season-tabs">
             {seasons.map(s => (
@@ -58,10 +59,10 @@ const SeasonalRecommendations = () => {
               </div>
               <div className="term-body">
                 <div className="term-name-row">
-                  <h3 className="term-name">{term.name}</h3>
-                  <span className="term-pinyin">{term.pinyin}</span>
+                  <h3 className="term-meaning">{term.meaning}</h3>
+                  <span className="term-chinese">{term.name}</span>
                 </div>
-                <p className="term-meaning">{term.meaning}</p>
+                <p className="term-pinyin-sub">{term.pinyin}</p>
                 <p className="term-dest-count">
                   <MapPin size={13} style={{ marginRight: 4, verticalAlign: 'middle' }} />
                   {term.destinations.length} destinations
@@ -84,13 +85,13 @@ const SeasonalRecommendations = () => {
               <div className="modal-hero-overlay" />
               <div className="modal-hero-text">
                 <p className="modal-date">{selectedTerm.date}</p>
-                <h2 className="modal-term-name">{selectedTerm.name}</h2>
-                <p className="modal-term-pinyin">{selectedTerm.pinyin} · {selectedTerm.meaning}</p>
+                <h2 className="modal-term-name">{selectedTerm.meaning}</h2>
+                <p className="modal-term-pinyin">{selectedTerm.name} · {selectedTerm.pinyin}</p>
               </div>
             </div>
 
             <div className="modal-body">
-              <h3 className="modal-recs-title">推荐旅行地</h3>
+              <h3 className="modal-recs-title">Recommended Destinations</h3>
               <div className="modal-dest-list">
                 {selectedTerm.destinations.map((dest, idx) => (
                   <div key={idx} className="modal-dest-item">
@@ -120,12 +121,21 @@ const SeasonalRecommendations = () => {
           margin-bottom: 56px;
         }
 
+        .solar-label {
+          font-size: 0.85rem;
+          font-weight: 700;
+          letter-spacing: 3px;
+          color: var(--color-accent-teal);
+          text-transform: uppercase;
+          margin-bottom: 12px;
+        }
+
         .solar-title {
           font-family: var(--font-heading);
-          font-size: 3rem;
+          font-size: 2.8rem;
           color: var(--color-text-primary);
-          margin-bottom: 12px;
-          letter-spacing: 0.04em;
+          margin-bottom: 14px;
+          letter-spacing: -0.01em;
         }
 
         .solar-subtitle {
@@ -232,30 +242,33 @@ const SeasonalRecommendations = () => {
         .term-name-row {
           display: flex;
           align-items: baseline;
-          gap: 10px;
-          margin-bottom: 4px;
-        }
-
-        .term-name {
-          font-family: var(--font-heading);
-          font-size: 1.5rem;
-          color: var(--color-text-primary);
-          margin: 0;
-          line-height: 1;
-        }
-
-        .term-pinyin {
-          font-size: 0.78rem;
-          color: var(--color-text-secondary);
-          font-style: italic;
+          justify-content: space-between;
+          gap: 8px;
+          margin-bottom: 2px;
         }
 
         .term-meaning {
-          font-size: 0.82rem;
+          font-family: var(--font-heading);
+          font-size: 1.05rem;
+          color: var(--color-text-primary);
+          margin: 0;
+          line-height: 1.2;
+          flex: 1;
+        }
+
+        .term-chinese {
+          font-size: 1.1rem;
           color: var(--color-accent-teal);
-          font-weight: 600;
+          font-weight: 700;
+          flex-shrink: 0;
+          letter-spacing: 0.05em;
+        }
+
+        .term-pinyin-sub {
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+          font-style: italic;
           margin-bottom: 10px;
-          letter-spacing: 0.3px;
         }
 
         .term-dest-count {
@@ -361,8 +374,8 @@ const SeasonalRecommendations = () => {
 
         .modal-term-name {
           font-family: var(--font-heading);
-          font-size: 2.8rem;
-          line-height: 1;
+          font-size: 2.2rem;
+          line-height: 1.1;
           margin-bottom: 6px;
           color: #fff;
         }

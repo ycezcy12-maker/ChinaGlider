@@ -6,22 +6,22 @@ export const solarTerms = [
     meaning: "Start of Spring",
     date: "Feb 3–5",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg",
+    imageUrl: "https://images.pexels.com/photos/3798396/pexels-photo-3798396.jpeg",
     destinations: [
       {
-        name: "西湖",
-        city: "杭州",
-        reason: `梅花初绽，春意最早抵达。沿苏堤漫步，赏湖面薄雾与早春嫩绿，是江南立春的绝佳仪式感。`
+        name: "West Lake",
+        city: "Hangzhou",
+        reason: `Plum blossoms open first here. Strolling the Su Causeway through thin morning mist and pale green shoots is the most poetic way to greet the new spring in Jiangnan.`
       },
       {
-        name: "婺源",
-        city: "江西",
-        reason: `油菜花田开始泛黄，古村与金色花海交相辉映，是摄影与踏青的理想开篇。`
+        name: "Wuyuan",
+        city: "Jiangxi",
+        reason: `Rapeseed fields begin to turn gold against whitewashed village walls — a classic opening scene of a Chinese spring, perfect for photography and gentle hikes.`
       },
       {
-        name: "鼓浪屿",
-        city: "厦门",
-        reason: `南方春来早，海风温柔，花木葱茏。漫步老别墅之间，感受立春的温柔气息。`
+        name: "Gulangyu Island",
+        city: "Xiamen",
+        reason: `Spring arrives early in the south. Sea breezes are gentle, flowering trees are lush, and wandering among colonial-era villas feels calm and unhurried.`
       }
     ]
   },
@@ -32,17 +32,17 @@ export const solarTerms = [
     meaning: "Rain Water",
     date: "Feb 18–20",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/1643409/pexels-photo-1643409.jpeg",
+    imageUrl: "https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg",
     destinations: [
       {
-        name: "青城山",
-        city: "成都",
-        reason: `雨水时节，山间云雾缭绕，道观隐于烟雨之中，是感受『天下幽』的最佳时机。`
+        name: "Qingcheng Mountain",
+        city: "Chengdu",
+        reason: `During Rain Water, the mountain paths are wrapped in cloud and mist, and Taoist temples emerge from the rain — a living image of deep mountain seclusion.`
       },
       {
-        name: "西塘古镇",
-        city: "嘉兴",
-        reason: `烟雨江南的代表。细雨中拱桥、廊棚和青石板路构成一幅流动的水墨画。`
+        name: "Xitang Ancient Town",
+        city: "Jiaxing",
+        reason: `Rain Water is this water town's finest hour. Arched stone bridges, covered walkways, and dark flagstones compose a living ink-wash painting in the drizzle.`
       }
     ]
   },
@@ -53,17 +53,17 @@ export const solarTerms = [
     meaning: "Awakening of Insects",
     date: "Mar 5–7",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg",
+    imageUrl: "https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg",
     destinations: [
       {
-        name: "武夷山",
-        city: "福建",
-        reason: `惊蛰后万物复苏，武夷山茶园新芽萌发，九曲溪水清澈，是春茶与自然的双重馈赠。`
+        name: "Wuyi Mountains",
+        city: "Fujian",
+        reason: `After the first spring thunder, tea gardens burst with new shoots and the Nine-Bend Stream runs crystal clear — a dual gift of spring tea and untouched nature.`
       },
       {
-        name: "漓江",
-        city: "桂林",
-        reason: `春雷过后山水愈发清新，喀斯特山峰在晨雾中若隐若现，竹筏漂流体验绝佳。`
+        name: "Li River",
+        city: "Guilin",
+        reason: `The landscape feels freshly rinsed after spring rains. Karst peaks appear and disappear through morning mist, and bamboo rafting along the river is superb.`
       }
     ]
   },
@@ -74,22 +74,22 @@ export const solarTerms = [
     meaning: "Spring Equinox",
     date: "Mar 20–21",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg",
+    imageUrl: "https://images.pexels.com/photos/97778/pexels-photo-97778.jpeg",
     destinations: [
       {
-        name: "婺源",
-        city: "江西",
-        reason: `油菜花盛开鼎盛期，金黄色的花海铺满山谷，是华东春季最壮观的自然景象之一。`
+        name: "Wuyuan",
+        city: "Jiangxi",
+        reason: `Rapeseed flowers are at peak bloom — sheets of gold fill the valleys between ancient villages, one of East China's most spectacular natural shows.`
       },
       {
-        name: "洛阳",
-        city: "河南",
-        reason: `牡丹花会前夕，万花竞相绽放。春分日昼夜均等，象征平和，正是游览龙门石窟的好时节。`
+        name: "Luoyang",
+        city: "Henan",
+        reason: `On the eve of the Peony Festival, tens of thousands of blooms compete for attention. The equinox symbolizes balance — a fitting day to visit the Longmen Grottoes too.`
       },
       {
-        name: "西双版纳",
-        city: "云南",
-        reason: `傣历新年将至，热带花卉满园，气候宜人，可提前感受泼水节的节日气氛。`
+        name: "Xishuangbanna",
+        city: "Yunnan",
+        reason: `The Dai New Year approaches, tropical flowers are everywhere, and the air is already warm enough to feel the coming joy of the Water Splashing Festival.`
       }
     ]
   },
@@ -100,17 +100,17 @@ export const solarTerms = [
     meaning: "Clear and Bright",
     date: "Apr 4–6",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg",
+    imageUrl: "https://images.pexels.com/photos/1772973/pexels-photo-1772973.jpeg",
     destinations: [
       {
-        name: "黄山",
-        city: "安徽",
-        reason: `云海最盛之时，云雾缭绕奇松怪石之间，雨后空气清新，景色如入仙境。`
+        name: "Huangshan",
+        city: "Anhui",
+        reason: `The sea of clouds is at its most dramatic now — mist wraps the twisted pines and granite peaks, and post-rain air is crisp and clean, like entering a painting.`
       },
       {
-        name: "苏州园林",
-        city: "苏州",
-        reason: `清明时节草木蓬勃，拙政园、留园中新绿映古墙，泼墨山水画般的景致令人心旷神怡。`
+        name: "Suzhou Classical Gardens",
+        city: "Suzhou",
+        reason: `Vegetation surges in Clear and Bright. New green reflects off old whitewashed walls in the Humble Administrator's Garden — serene and utterly beautiful.`
       }
     ]
   },
@@ -121,17 +121,17 @@ export const solarTerms = [
     meaning: "Grain Rain",
     date: "Apr 19–21",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/1327373/pexels-photo-1327373.jpeg",
+    imageUrl: "https://images.pexels.com/photos/2884905/pexels-photo-2884905.jpeg",
     destinations: [
       {
-        name: "千岛湖",
-        city: "杭州",
-        reason: `谷雨时节烟雨蒙蒙，湖面上岛屿在雨雾中若隐若现，是观赏水墨意境的最佳时节。`
+        name: "Thousand Island Lake",
+        city: "Hangzhou",
+        reason: `Grain Rain wraps the lake in soft mist — forested islands float in and out of view, creating an ink-wash landscape that feels unreal.`
       },
       {
-        name: "西湖龙井茶园",
-        city: "杭州",
-        reason: `谷雨前后是采摘龙井茶的黄金时节，亲手采茶制茶，感受中国茶文化的魅力。`
+        name: "West Lake Longjing Tea Gardens",
+        city: "Hangzhou",
+        reason: `The days just before Grain Rain are the golden window for picking Longjing tea. Hand-picking and pan-roasting the leaves yourself is an unforgettable experience.`
       }
     ]
   },
@@ -142,17 +142,17 @@ export const solarTerms = [
     meaning: "Start of Summer",
     date: "May 5–7",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg",
+    imageUrl: "https://images.pexels.com/photos/33231945/pexels-photo-33231945.jpeg",
     destinations: [
       {
-        name: "张家界",
-        city: "湖南",
-        reason: `夏季来临前，天气晴朗，云海壮观。悬浮于云端的石柱群在阳光下格外震撼，适合徒步登高。`
+        name: "Zhangjiajie",
+        city: "Hunan",
+        reason: `Before the heavy summer heat sets in, skies are clear and the sea of clouds is spectacular. The towering sandstone columns are best seen at golden hour from the ridge trails.`
       },
       {
-        name: "丽江古城",
-        city: "云南",
-        reason: `立夏前丽江气候最宜人，古城花开满道，纳西文化与悠闲时光在这里完美融合。`
+        name: "Lijiang Old Town",
+        city: "Yunnan",
+        reason: `Early summer in Lijiang is its most pleasant. Flowers line every lane, and Naxi culture mingles effortlessly with a laid-back, slow travel pace.`
       }
     ]
   },
@@ -163,17 +163,17 @@ export const solarTerms = [
     meaning: "Grain Buds",
     date: "May 20–22",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1543793/pexels-photo-1543793.jpeg",
+    imageUrl: "https://images.pexels.com/photos/1726619/pexels-photo-1726619.jpeg",
     destinations: [
       {
-        name: "元阳梯田",
-        city: "云南",
-        reason: `水田注满水，层层梯田如镜面般反射天空，此时最具视觉震撼力，是摄影爱好者的圣地。`
+        name: "Yuanyang Rice Terraces",
+        city: "Yunnan",
+        reason: `Fields are flooded and the terraces become mirrors, reflecting the sky in dazzling layers. Photographers consider this the single most dramatic moment of the year here.`
       },
       {
-        name: "稻城亚丁",
-        city: "四川",
-        reason: `小满时节高原草甸绿意初现，雪山倒映于海子之中，气候凉爽，适合高原徒步。`
+        name: "Daocheng Yading",
+        city: "Sichuan",
+        reason: `High-plateau meadows turn their first flush of green, and snow-capped peaks reflect in the alpine lakes. The cool air makes it ideal for high-altitude trekking.`
       }
     ]
   },
@@ -184,17 +184,17 @@ export const solarTerms = [
     meaning: "Grain in Ear",
     date: "Jun 5–7",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1578750/pexels-photo-1578750.jpeg",
+    imageUrl: "https://images.pexels.com/photos/5546078/pexels-photo-5546078.jpeg",
     destinations: [
       {
-        name: "青海湖",
-        city: "青海",
-        reason: `芒种前后油菜花与薰衣草盛开，蓝色湖面与金黄花海相映，是中国内陆最美的夏日风光之一。`
+        name: "Qinghai Lake",
+        city: "Qinghai",
+        reason: `Rapeseed and lavender bloom together around the lake shore, matching the deep blue water. One of inland China's most vivid summer landscapes.`
       },
       {
-        name: "神农架",
-        city: "湖北",
-        reason: `原始森林进入最葱郁的季节，溪流清澈，野花遍地，是避暑探幽的绝佳去处。`
+        name: "Shennongjia",
+        city: "Hubei",
+        reason: `The primeval forest is at peak lushness — streams run cold and clear, wildflowers carpet the trails. A perfect summer escape into true wilderness.`
       }
     ]
   },
@@ -205,17 +205,17 @@ export const solarTerms = [
     meaning: "Summer Solstice",
     date: "Jun 21–22",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg",
+    imageUrl: "https://images.pexels.com/photos/6877860/pexels-photo-6877860.jpeg",
     destinations: [
       {
-        name: "内蒙古草原",
-        city: "呼伦贝尔",
-        reason: `夏至日照时间最长，草原绿意最盛，骑马逐风，感受"天苍苍野茫茫"的壮阔。`
+        name: "Hulunbuir Grasslands",
+        city: "Inner Mongolia",
+        reason: `The longest day of the year, and the grassland is its greenest. Riding through endless steppe under a vast blue sky is one of China's most liberating experiences.`
       },
       {
-        name: "北戴河",
-        city: "河北",
-        reason: `白昼最长的一天在海边度过，日落时间推迟，沙滩与海浪带来夏日的无限惬意。`
+        name: "Beidaihe Beach",
+        city: "Hebei",
+        reason: `Spend the longest day by the sea. Sunsets come late, and the sound of waves makes the endless daylight feel like a gift.`
       }
     ]
   },
@@ -226,17 +226,17 @@ export const solarTerms = [
     meaning: "Minor Heat",
     date: "Jul 6–8",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg",
+    imageUrl: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg",
     destinations: [
       {
-        name: "长白山",
-        city: "吉林",
-        reason: `小暑时节山顶凉爽，天池碧蓝如玉，瀑布奔腾。是避暑避热的理想高山胜地。`
+        name: "Changbai Mountain",
+        city: "Jilin",
+        reason: `The summit stays cool even in summer. Heaven Lake glows a brilliant jade blue, and waterfalls thunder through dense forest — an ideal highland retreat.`
       },
       {
-        name: "莫干山",
-        city: "浙江",
-        reason: `竹海茂密，气温比杭州低5度以上，民宿精致，是华东最受欢迎的清凉避暑地。`
+        name: "Moganshan",
+        city: "Zhejiang",
+        reason: `Bamboo forests keep the mountain 5°C cooler than Hangzhou below. Boutique guesthouses and misty trails make this East China's most beloved summer escape.`
       }
     ]
   },
@@ -247,17 +247,17 @@ export const solarTerms = [
     meaning: "Major Heat",
     date: "Jul 22–24",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1643409/pexels-photo-1643409.jpeg",
+    imageUrl: "https://images.pexels.com/photos/15236050/pexels-photo-15236050.jpeg",
     destinations: [
       {
-        name: "阿尔山",
-        city: "内蒙古",
-        reason: `大暑时节全国最热，而阿尔山气温仅20度左右，火山地貌与湿地森林令人心旷神怡。`
+        name: "Arxan",
+        city: "Inner Mongolia",
+        reason: `While the rest of China swelters, Arxan hovers around 20°C. Volcanic crater lakes and wetland forests offer cool, otherworldly scenery far from the heat.`
       },
       {
-        name: "九寨沟",
-        city: "四川",
-        reason: `高原夏季凉爽，彩色湖泊在阳光下五彩斑斓，瀑布轰鸣，是消暑与自然奇观兼得的胜地。`
+        name: "Jiuzhaigou Valley",
+        city: "Sichuan",
+        reason: `Highland summer is refreshingly cool. The multi-colored lakes shimmer under clear skies, and cascading waterfalls provide constant natural air conditioning.`
       }
     ]
   },
@@ -268,17 +268,17 @@ export const solarTerms = [
     meaning: "Start of Autumn",
     date: "Aug 7–9",
     season: "autumn",
-    imageUrl: "https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg",
+    imageUrl: "https://images.pexels.com/photos/16512172/pexels-photo-16512172.jpeg",
     destinations: [
       {
-        name: "喀纳斯",
-        city: "新疆",
-        reason: `立秋后新疆北疆率先入秋，白桦林与松林开始变色，喀纳斯湖如一块宝石嵌于彩林之中。`
+        name: "Kanas Lake",
+        city: "Xinjiang",
+        reason: `Northwest China turns first. Birch and pine forests begin to change color, and Kanas Lake sits like a gemstone set in layers of gold and rust — the season's opening act.`
       },
       {
-        name: "香格里拉",
-        city: "云南",
-        reason: `藏区高原秋意早现，松茸上市，草甸变为金红，普达措国家公园景色如画。`
+        name: "Shangri-La",
+        city: "Yunnan",
+        reason: `Autumn arrives early on the Tibetan plateau. Pine mushrooms are in season, meadows glow gold-red, and Pudacuo National Park is simply breathtaking.`
       }
     ]
   },
@@ -289,17 +289,17 @@ export const solarTerms = [
     meaning: "End of Heat",
     date: "Aug 22–24",
     season: "autumn",
-    imageUrl: "https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg",
+    imageUrl: "https://images.pexels.com/photos/6877046/pexels-photo-6877046.jpeg",
     destinations: [
       {
-        name: "坝上草原",
-        city: "河北",
-        reason: `处暑后暑气消退，坝上草原开始变黄，晴空万里，是骑马观草原秋色的绝佳时节。`
+        name: "Bashang Grassland",
+        city: "Hebei",
+        reason: `Once the heat retreats, the grassland turns golden. Skies clear and expand endlessly. Riding horses through autumn-colored steppe feels like freedom itself.`
       },
       {
-        name: "乌镇",
-        city: "浙江",
-        reason: `暑热散去，古镇游人渐少，水乡秋色静谧悠远，是深度体验江南水乡文化的最佳时机。`
+        name: "Wuzhen",
+        city: "Zhejiang",
+        reason: `Crowds thin after summer. The water town settles into a quiet, golden calm — perfect for wandering canals and soaking in Jiangnan culture at your own pace.`
       }
     ]
   },
@@ -310,17 +310,17 @@ export const solarTerms = [
     meaning: "White Dew",
     date: "Sep 7–9",
     season: "autumn",
-    imageUrl: "https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg",
+    imageUrl: "https://images.pexels.com/photos/17242182/pexels-photo-17242182.jpeg",
     destinations: [
       {
-        name: "黄山",
-        city: "安徽",
-        reason: `白露时节晨雾浓郁，黄山云海再度壮观。松针上的露珠与云雾共同构成一幅仙境图卷。`
+        name: "Huangshan",
+        city: "Anhui",
+        reason: `Morning dew on pine needles and dense valley mist make White Dew one of Huangshan's most ethereal moments — like waking up inside a classical landscape scroll.`
       },
       {
-        name: "漓江",
-        city: "桂林",
-        reason: `秋高气爽，漓江水位适中，竹筏漂流视野开阔，两岸喀斯特山峰倒映水中，如诗如画。`
+        name: "Li River",
+        city: "Guilin",
+        reason: `Autumn skies clarify the river. Water levels are ideal for bamboo rafting, and the karst peaks reflected on the surface are as perfect as a postcard.`
       }
     ]
   },
@@ -331,22 +331,22 @@ export const solarTerms = [
     meaning: "Autumn Equinox",
     date: "Sep 22–24",
     season: "autumn",
-    imageUrl: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg",
+    imageUrl: "https://images.pexels.com/photos/1114896/pexels-photo-1114896.jpeg",
     destinations: [
       {
-        name: "北京香山",
-        city: "北京",
-        reason: `秋分后红叶开始染色，香山漫山红叶与清代皇家园林相映，是北京秋季最经典的打卡地。`
+        name: "Fragrant Hills",
+        city: "Beijing",
+        reason: `Red leaves begin to saturate the hillside. The imperial-era park and temples, set against blazing autumn color, is Beijing's most iconic fall scene.`
       },
       {
-        name: "婺源",
-        city: "江西",
-        reason: `晒秋时节，民居屋顶挂满红辣椒与金黄玉米，是中国乡村秋日最具视觉冲击力的景象。`
+        name: "Wuyuan",
+        city: "Jiangxi",
+        reason: `"Drying Autumn" season: rooftops are draped with red chilies and golden corn. The most visually striking rural harvest scene in all of China.`
       },
       {
-        name: "稻城亚丁",
-        city: "四川",
-        reason: `秋分前后高原红叶与雪山同框，仙乃日、央迈勇、夏诺多吉三神山在秋色中更显神圣。`
+        name: "Daocheng Yading",
+        city: "Sichuan",
+        reason: `The three sacred peaks frame high-altitude red and gold foliage that is unlike anything else in China. Spectacular and deeply spiritual at the same time.`
       }
     ]
   },
@@ -357,17 +357,17 @@ export const solarTerms = [
     meaning: "Cold Dew",
     date: "Oct 7–9",
     season: "autumn",
-    imageUrl: "https://images.pexels.com/photos/1300510/pexels-photo-1300510.jpeg",
+    imageUrl: "https://images.pexels.com/photos/2412603/pexels-photo-2412603.jpeg",
     destinations: [
       {
-        name: "长城",
-        city: "北京",
-        reason: `寒露后北京红叶最盛，慕田峪、金山岭段长城被红叶环绕，秋高气爽，是徒步长城的黄金时节。`
+        name: "Great Wall",
+        city: "Beijing",
+        reason: `Cold Dew brings Beijing's peak foliage. Sections like Mutianyu and Jinshanling are ringed by red forest, making autumn hiking on the Wall absolutely golden.`
       },
       {
-        name: "喀纳斯",
-        city: "新疆",
-        reason: `白桦林金黄一片，湖面倒影如镜，偶遇晨雾弥漫，景色如梦幻般不真实。`
+        name: "Kanas Lake",
+        city: "Xinjiang",
+        reason: `Birch forests turn a solid, luminous gold. The lake mirrors every color above it, and morning fog drifts through — a landscape too beautiful to feel real.`
       }
     ]
   },
@@ -378,17 +378,17 @@ export const solarTerms = [
     meaning: "Frost's Descent",
     date: "Oct 23–24",
     season: "autumn",
-    imageUrl: "https://images.pexels.com/photos/1212600/pexels-photo-1212600.jpeg",
+    imageUrl: "https://images.pexels.com/photos/14010115/pexels-photo-14010115.jpeg",
     destinations: [
       {
-        name: "泸沽湖",
-        city: "云南/四川",
-        reason: `霜降后泸沽湖水更清澈，周边山林开始披霜，摩梭族文化与宁静湖景在深秋中别有韵味。`
+        name: "Lugu Lake",
+        city: "Yunnan / Sichuan",
+        reason: `After frost arrives, the lake turns crystal clear and surrounding forests begin to silver at the edges. The Mosuo matriarchal culture adds rare depth to the journey.`
       },
       {
-        name: "太行山",
-        city: "山西/河南",
-        reason: `霜降时节太行山红叶达到顶峰，壮阔山势配上漫山红叶，气势磅礴，令人震撼。`
+        name: "Taihang Mountains",
+        city: "Shanxi / Henan",
+        reason: `Red leaves peak at Frost's Descent. The sheer scale of the mountain range covered in crimson is overwhelming — one of North China's most powerful autumn views.`
       }
     ]
   },
@@ -399,17 +399,17 @@ export const solarTerms = [
     meaning: "Start of Winter",
     date: "Nov 7–8",
     season: "winter",
-    imageUrl: "https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg",
+    imageUrl: "https://images.pexels.com/photos/8955688/pexels-photo-8955688.jpeg",
     destinations: [
       {
-        name: "腾冲",
-        city: "云南",
-        reason: `立冬后腾冲气候依然温暖，地热温泉热气蒸腾，火山地貌与银杏金黄，是冬日避寒的绝佳选择。`
+        name: "Tengchong",
+        city: "Yunnan",
+        reason: `Tengchong stays warm even as winter begins elsewhere. Geothermal hot springs steam in the cool air, ginkgo trees turn gold, and the volcanic landscape is otherworldly.`
       },
       {
-        name: "西藏林芝",
-        city: "西藏",
-        reason: `立冬时节林芝天高云淡，桃花谷银杏金黄，雪山初雪，是冬季入藏最美的季节之一。`
+        name: "Linzhi",
+        city: "Tibet",
+        reason: `Tibet's most accessible season begins here — clear skies, golden valley forests, and the first dusting of snow on distant peaks create an unforgettable contrast.`
       }
     ]
   },
@@ -420,17 +420,17 @@ export const solarTerms = [
     meaning: "Minor Snow",
     date: "Nov 22–23",
     season: "winter",
-    imageUrl: "https://images.pexels.com/photos/235621/pexels-photo-235621.jpeg",
+    imageUrl: "https://images.pexels.com/photos/30612337/pexels-photo-30612337.jpeg",
     destinations: [
       {
-        name: "漠河",
-        city: "黑龙江",
-        reason: `小雪时节漠河已进入严冬，银装素裹的原始森林与极光奇观使其成为中国最神秘的冬日目的地。`
+        name: "Mohe",
+        city: "Heilongjiang",
+        reason: `China's northernmost town is already deep in winter. Primeval forests dressed in fresh snow and the chance to see the Northern Lights make it unforgettable.`
       },
       {
-        name: "乌镇",
-        city: "浙江",
-        reason: `初雪落在乌镇青瓦白墙之上，水乡在一片素白中更显古朴宁静，是文艺感最强的冬日旅行地。`
+        name: "Wuzhen",
+        city: "Zhejiang",
+        reason: `The first snow settles on grey-tile rooftops. The water town becomes quiet and monochrome — one of the most poetic winter scenes in southern China.`
       }
     ]
   },
@@ -441,17 +441,17 @@ export const solarTerms = [
     meaning: "Major Snow",
     date: "Dec 6–8",
     season: "winter",
-    imageUrl: "https://images.pexels.com/photos/1694621/pexels-photo-1694621.jpeg",
+    imageUrl: "https://images.pexels.com/photos/1366919/pexels-photo-1366919.jpeg",
     destinations: [
       {
-        name: "雪乡",
-        city: "黑龙江",
-        reason: `大雪时节雪乡积雪最深，民居屋顶积雪如蘑菇，东北特色民俗与雪景完美融合，宛如童话世界。`
+        name: "Snow Village",
+        city: "Heilongjiang",
+        reason: `Snowdrifts pile thick on every rooftop, shaped like mushroom caps. This northeast village looks like a fairy tale, with folk customs and fireside warmth to match.`
       },
       {
-        name: "吉林雾凇岛",
-        city: "吉林",
-        reason: `松花江沿岸的雾凇奇观在大雪节气后最为壮观，银树琼枝，如梦如幻。`
+        name: "Jilin Fog-Rime Island",
+        city: "Jilin",
+        reason: `The Songhua River generates a magical rime-ice phenomenon — every branch glazed in white crystal. After Major Snow, the display is at its most extraordinary.`
       }
     ]
   },
@@ -462,17 +462,17 @@ export const solarTerms = [
     meaning: "Winter Solstice",
     date: "Dec 21–23",
     season: "winter",
-    imageUrl: "https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg",
+    imageUrl: "https://images.pexels.com/photos/2113565/pexels-photo-2113565.jpeg",
     destinations: [
       {
-        name: "哈尔滨冰雪大世界",
-        city: "哈尔滨",
-        reason: `冬至前后哈尔滨冰雪节开幕，巨型冰雕建筑在彩灯照耀下璀璨夺目，是中国冬季最盛大的冰雪奇观。`
+        name: "Harbin Ice and Snow World",
+        city: "Harbin",
+        reason: `The festival opens around Winter Solstice. Colossal ice buildings glow in neon light on the longest night of the year — China's greatest winter spectacle.`
       },
       {
-        name: "丽江古城",
-        city: "云南",
-        reason: `冬至时节丽江阳光充足，古城无雪但有暖阳，玉龙雪山白雪皑皑，是南方冬日最温暖的旅行地之一。`
+        name: "Lijiang Old Town",
+        city: "Yunnan",
+        reason: `Lijiang in winter is sunny and mild. The old town is warm and quiet, while Jade Dragon Snow Mountain stands brilliant white against a deep blue sky.`
       }
     ]
   },
@@ -483,17 +483,17 @@ export const solarTerms = [
     meaning: "Minor Cold",
     date: "Jan 5–7",
     season: "winter",
-    imageUrl: "https://images.pexels.com/photos/1853542/pexels-photo-1853542.jpeg",
+    imageUrl: "https://images.pexels.com/photos/1457812/pexels-photo-1457812.jpeg",
     destinations: [
       {
-        name: "西双版纳",
-        city: "云南",
-        reason: `小寒时节全国大部分地区寒风刺骨，而西双版纳依然温暖如春，热带植物园中百花盛开，是最佳避寒胜地。`
+        name: "Xishuangbanna",
+        city: "Yunnan",
+        reason: `When most of China shivers, Xishuangbanna stays tropical and warm. Flowers bloom in the botanical gardens — the ultimate winter escape to summer-like warmth.`
       },
       {
-        name: "三亚",
-        city: "海南",
-        reason: `隆冬时节三亚阳光沙滩，气温接近30度，是北方旅客逃离严冬的首选目的地。`
+        name: "Sanya",
+        city: "Hainan",
+        reason: `Beach, sunshine, and nearly 30°C in deep winter. The number-one destination for northern Chinese fleeing the cold, and for good reason.`
       }
     ]
   },
@@ -504,17 +504,17 @@ export const solarTerms = [
     meaning: "Major Cold",
     date: "Jan 20–21",
     season: "winter",
-    imageUrl: "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg",
+    imageUrl: "https://images.pexels.com/photos/3855633/pexels-photo-3855633.jpeg",
     destinations: [
       {
-        name: "漠河北极村",
-        city: "黑龙江",
-        reason: `大寒是一年中最寒冷的节气，漠河气温可达零下40度，在中国最北端感受极寒，观赏极光与冰封河流。`
+        name: "Mohe North Pole Village",
+        city: "Heilongjiang",
+        reason: `The year's coldest day, and temperatures plunge to –40°C. Travel to China's northernmost point to experience true extreme cold, frozen rivers, and occasional aurora.`
       },
       {
-        name: "凤凰古城",
-        city: "湖南",
-        reason: `大寒时节凤凰人流最少，古城宁静如画，沱江水清澈映古楼，是深度感受苗族文化的最好时机。`
+        name: "Fenghuang Ancient Town",
+        city: "Hunan",
+        reason: `Major Cold brings Fenghuang its quietest, most authentic days. The Tuo River reflects stilted wooden houses in icy clarity — and Miao culture fills the silence.`
       }
     ]
   }
