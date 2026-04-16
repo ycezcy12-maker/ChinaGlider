@@ -51,10 +51,7 @@ const DestinationCarousel = () => {
           aria-hidden={idx !== currentIndex}
         >
           <img src={slide.imageUrl} alt={slide.tagline} className="slide-bg" />
-          <div className="slide-fade-left" />
-          <div className="slide-fade-right" />
           <div className="slide-fade-top" />
-          <div className="slide-fade-bottom" />
         </div>
       ))}
 
@@ -97,7 +94,7 @@ const DestinationCarousel = () => {
           height: 100vh;
           min-height: 640px;
           overflow: hidden;
-          background: #f5ede2;
+          background: #f2e8da;
         }
 
         .hero-slide {
@@ -125,44 +122,30 @@ const DestinationCarousel = () => {
           display: block;
         }
 
-        .slide-fade-left,
-        .slide-fade-right,
-        .slide-fade-top,
-        .slide-fade-bottom {
-          position: absolute;
-          pointer-events: none;
-        }
-
-        .slide-fade-left {
-          inset: 0;
-          background: linear-gradient(to right, #f5ede2 0%, rgba(245, 237, 226, 0.6) 20%, transparent 45%);
-        }
-
-        .slide-fade-right {
-          inset: 0;
-          background: linear-gradient(to left, #f5ede2 0%, rgba(245, 237, 226, 0.6) 20%, transparent 45%);
-        }
-
         .slide-fade-top {
+          position: absolute;
           inset: 0;
-          background: linear-gradient(to bottom, #f5ede2 0%, rgba(245, 237, 226, 0.7) 12%, transparent 35%);
-        }
-
-        .slide-fade-bottom {
-          inset: 0;
-          background: linear-gradient(to top, #f5ede2 0%, rgba(245, 237, 226, 0.4) 15%, transparent 40%);
+          pointer-events: none;
+          background: linear-gradient(
+            to bottom,
+            #f2e8da 0%,
+            rgba(242, 232, 218, 0.92) 18%,
+            rgba(242, 232, 218, 0.6) 36%,
+            rgba(242, 232, 218, 0.1) 55%,
+            transparent 70%
+          );
         }
 
         .hero-carousel-content {
           position: absolute;
           inset: 0;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           z-index: 10;
           pointer-events: none;
           text-align: center;
-          padding: 0 40px;
+          padding: 90px 40px 0;
         }
 
         .slide-text-block {
