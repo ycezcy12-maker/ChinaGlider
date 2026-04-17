@@ -190,7 +190,7 @@ const DestinationCarousel = () => {
         }
 
         .slide-tagline {
-          font-size: 0.78rem;
+          font-size: 1.1rem;
           font-weight: 700;
           letter-spacing: 3px;
           text-transform: uppercase;
@@ -201,9 +201,9 @@ const DestinationCarousel = () => {
 
         .slide-title {
           font-family: var(--font-heading);
-          font-size: 3.4rem;
+          font-size: 2.5rem;
           font-weight: 700;
-          line-height: 1.1;
+          line-height: 1.15;
           margin-bottom: 6px;
           color: #1a1410;
           letter-spacing: -0.02em;
@@ -328,7 +328,7 @@ const DestinationCarousel = () => {
           }
 
           .slide-title {
-            font-size: 2.4rem;
+            font-size: 1.9rem;
           }
 
           .slide-subtitle {
