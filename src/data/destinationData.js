@@ -10,8 +10,7 @@ export const slides = [
     subtitle: "and Customized Dive-In Itinerary",
     description: "Experience the city through a journey tailored to your unique travel personality. From modern skyline to ancient cultural heritage.",
     cta: { label: "Start Your Journey", path: "/quiz" },
-    imageUrl: introImage,
-    fallbackColor: "195, 218, 235"
+    imageUrl: introImage
   },
   {
     id: 2,
@@ -21,8 +20,7 @@ export const slides = [
     subtitle: "",
     description: "Citywalk through the most delicate streets and shops. Discover jazz bars, art deco architecture and world-class cuisine along the Bund.",
     cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
-    imageUrl: shanghaiAutumnImage,
-    fallbackColor: "242, 232, 218"
+    imageUrl: shanghaiAutumnImage
   },
   {
     id: 3,
@@ -32,8 +30,7 @@ export const slides = [
     subtitle: "",
     description: "Walk the same stones as emperors. From the Forbidden City to hidden hutong alleyways, Beijing holds centuries of stories waiting to be told.",
     cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
-    imageUrl: "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg",
-    fallbackColor: "220, 210, 195"
+    imageUrl: "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg"
   },
   {
     id: 4,
@@ -43,8 +40,7 @@ export const slides = [
     subtitle: "",
     description: "Journey through dramatic highlands, turquoise lakes and ancient monasteries. A rare wilderness that feels like the edge of the world.",
     cta: { label: "View the Itinerary", path: "/trip-basics" },
-    imageUrl: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg",
-    fallbackColor: "195, 220, 230"
+    imageUrl: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg"
   },
   {
     id: 5,
@@ -54,8 +50,7 @@ export const slides = [
     subtitle: "",
     description: "Drift down the Li River past limestone towers and misty valleys. A landscape so surreal it has inspired Chinese ink painters for a thousand years.",
     cta: { label: "View the Itinerary", path: "/trip-basics" },
-    imageUrl: "https://images.pexels.com/photos/3574523/pexels-photo-3574523.jpeg",
-    fallbackColor: "200, 225, 215"
+    imageUrl: "https://images.pexels.com/photos/3574523/pexels-photo-3574523.jpeg"
   },
   {
     id: 6,
@@ -65,7 +60,6 @@ export const slides = [
     subtitle: "",
     description: "Follow the ancient caravans from Xi'an through Dunhuang to Kashgar. Every oasis holds a civilization's worth of art, faith and memory.",
     cta: { label: "View the Itinerary", path: "/trip-basics" },
-    imageUrl: "https://images.pexels.com/photos/3889742/pexels-photo-3889742.jpeg",
-    fallbackColor: "235, 220, 195"
+    imageUrl: "https://images.pexels.com/photos/3889742/pexels-photo-3889742.jpeg"
   }
 ];

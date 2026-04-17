@@ -10,7 +10,7 @@ const DestinationCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
   const [animating, setAnimating] = useState(false);
-  const [slideColors, setSlideColors] = useState(() => slides.map((s) => s.fallbackColor || DEFAULT_COLOR));
+  const [slideColors, setSlideColors] = useState(() => slides.map(() => DEFAULT_COLOR));
   const autoPlayRef = useRef(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const DestinationCarousel = () => {
       extractLightColor(slide.imageUrl).then((color) => {
         setSlideColors((prev) => {
           const next = [...prev];
-          next[idx] = color !== DEFAULT_COLOR ? color : (slide.fallbackColor || DEFAULT_COLOR);
+          next[idx] = color;
           return next;
         });
       });
@@ -147,11 +147,11 @@ const DestinationCarousel = () => {
           pointer-events: none;
           background: linear-gradient(
             to bottom,
-            rgba(var(--slide-light-color, 242, 232, 218), 1) 0%,
-            rgba(var(--slide-light-color, 242, 232, 218), 1) 20%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.92) 38%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.55) 55%,
-            transparent 72%
+            rgb(var(--slide-light-color, 242, 232, 218)) 0%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.92) 18%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.6) 36%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.1) 55%,
+            transparent 70%
           );
           transition: background 0.8s ease-in-out;
         }
