@@ -1,4 +1,4 @@
-import introImage from '../assets/generation-0342ec9f-68bb-4056-8245-f43b34c4d1e3.png';
+import introImage from '../assets/generation-958ad02a-2d62-4767-afd0-411bae492b96.png';
 import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整版.jpg';
 
 export const slides = [
