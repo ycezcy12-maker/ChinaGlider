@@ -1,3 +1,6 @@
+import introImage from '../assets/generation-0342ec9f-68bb-4056-8245-f43b34c4d1e3.png';
+import shanghaiImage from '../assets/微信图片_20260417153311_46_12.png';
+
 export const slides = [
   {
     id: 1,
@@ -7,7 +10,7 @@ export const slides = [
     subtitle: "and Customized Dive-In Itinerary",
     description: "Experience the city through a journey tailored to your unique travel personality. From modern skyline to ancient cultural heritage.",
     cta: { label: "Start Your Journey", path: "/quiz" },
-    imageUrl: "https://images.pexels.com/photos/3804618/pexels-photo-3804618.jpeg"
+    imageUrl: introImage
   },
   {
     id: 2,
@@ -17,7 +20,7 @@ export const slides = [
     subtitle: "",
     description: "Citywalk through the most delicate streets and shops. Discover jazz bars, art deco architecture and world-class cuisine along the Bund.",
     cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
-    imageUrl: "https://images.pexels.com/photos/2846217/pexels-photo-2846217.jpeg"
+    imageUrl: shanghaiImage
   },
   {
     id: 3,
