@@ -38,7 +38,7 @@ export function extractLightColor(imageUrl) {
       const avgG = totalG / count;
       const avgB = totalB / count;
 
-      const lighten = (c) => Math.round(c + (255 - c) * 0.55);
+      const lighten = (c) => Math.round(c + (255 - c) * 0.3);
       const r = lighten(avgR);
       const g = lighten(avgG);
       const b = lighten(avgB);
