@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
           </Link>
           <nav className="nav-links">
             <Link to="/" className="nav-item">Home</Link>
-            <Link to="/quiz" className="nav-item">Travel MBTI</Link>
+            <Link to="/quiz" className="nav-item">Travel Persona</Link>
             <Link to="/poi-selection" className="nav-item">Personalized Spots</Link>
             <Link to="/trip-basics" className="nav-item">Smart Itinerary</Link>
             <Link to="/starter-pack" className="nav-item">Starter Pack</Link>

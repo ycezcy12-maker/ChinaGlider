@@ -6,7 +6,7 @@ export const slides = [
     id: 1,
     type: "intro",
     tagline: "Your Journey Starts Here",
-    title: "Discover Your Travel MBTI",
+    title: "Discover Your Travel Persona",
     subtitle: "and Customized Dive-In Itinerary",
     description: "Experience the city through a journey tailored to your unique travel personality. From modern skyline to ancient cultural heritage.",
     cta: { label: "Start Your Journey", path: "/quiz" },
