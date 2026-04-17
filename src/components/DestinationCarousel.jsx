@@ -91,21 +91,21 @@ const DestinationCarousel = () => {
         .hero-carousel {
           position: relative;
           width: 100%;
+          height: 100vh;
+          min-height: 640px;
+          overflow: hidden;
           background: #f2e8da;
         }
 
         .hero-slide {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
+          inset: 0;
           opacity: 0;
           transition: opacity 0.8s ease-in-out;
           pointer-events: none;
         }
 
         .hero-slide.active {
-          position: relative;
           opacity: 1;
           pointer-events: auto;
         }
@@ -116,9 +116,10 @@ const DestinationCarousel = () => {
 
         .slide-bg {
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
+          object-position: center bottom;
           display: block;
-          max-width: none;
         }
 
         .slide-fade-top {
@@ -137,10 +138,7 @@ const DestinationCarousel = () => {
 
         .hero-carousel-content {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
+          inset: 0;
           display: flex;
           align-items: flex-start;
           justify-content: center;
