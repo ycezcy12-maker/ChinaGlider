@@ -147,11 +147,11 @@ const DestinationCarousel = () => {
           pointer-events: none;
           background: linear-gradient(
             to bottom,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.82) 0%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.65) 18%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.35) 36%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.08) 52%,
-            transparent 65%
+            rgba(var(--slide-light-color, 242, 232, 218), 1) 0%,
+            rgba(var(--slide-light-color, 242, 232, 218), 1) 20%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.92) 38%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.55) 55%,
+            transparent 72%
           );
           transition: background 0.8s ease-in-out;
         }
