@@ -7,7 +7,7 @@ import { extractLightColor } from '../utils/extractLightColor';
 const SLIDE_FALLBACK_COLORS = [
   '195, 220, 245',
   '245, 235, 220',
-  '230, 222, 212',
+  '250, 230, 200',
   '220, 232, 228',
   '220, 238, 228',
   '245, 232, 210',

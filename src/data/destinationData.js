@@ -1,5 +1,6 @@
 import introImage from '../assets/generation-958ad02a-2d62-4767-afd0-411bae492b96.png';
 import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整版.jpg';
+import beijingImage from '../assets/generation-ec03831c-7db8-4b45-b8ec-ee264f8faf62.png';
 
 export const slides = [
   {
@@ -30,7 +31,7 @@ export const slides = [
     subtitle: "",
     description: "Walk the same stones as emperors. From the Forbidden City to hidden hutong alleyways, Beijing holds centuries of stories waiting to be told.",
     cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
-    imageUrl: "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg"
+    imageUrl: beijingImage
   },
   {
     id: 4,
