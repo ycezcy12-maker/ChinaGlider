@@ -4,13 +4,20 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { slides } from '../data/destinationData';
 import { extractLightColor } from '../utils/extractLightColor';
 
-const DEFAULT_COLOR = '242, 232, 218';
+const SLIDE_FALLBACK_COLORS = [
+  '200, 218, 240',
+  '242, 232, 218',
+  '210, 200, 190',
+  '210, 220, 215',
+  '215, 230, 220',
+  '238, 225, 205',
+];
 
 const DestinationCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
   const [animating, setAnimating] = useState(false);
-  const [slideColors, setSlideColors] = useState(() => slides.map(() => DEFAULT_COLOR));
+  const [slideColors, setSlideColors] = useState(() => slides.map((_, i) => SLIDE_FALLBACK_COLORS[i] || SLIDE_FALLBACK_COLORS[0]));
   const autoPlayRef = useRef(true);
 
   useEffect(() => {
@@ -147,11 +154,11 @@ const DestinationCarousel = () => {
           pointer-events: none;
           background: linear-gradient(
             to bottom,
-            rgb(var(--slide-light-color, 242, 232, 218)) 0%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.92) 18%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.6) 36%,
-            rgba(var(--slide-light-color, 242, 232, 218), 0.1) 55%,
-            transparent 70%
+            rgba(var(--slide-light-color, 242, 232, 218), 0.97) 0%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.88) 20%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.55) 40%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.12) 58%,
+            transparent 72%
           );
           transition: background 0.8s ease-in-out;
         }
@@ -189,7 +196,7 @@ const DestinationCarousel = () => {
           text-transform: uppercase;
           color: var(--color-accent-terracotta);
           margin-bottom: 14px;
-          opacity: 0.85;
+          opacity: 1;
         }
 
         .slide-title {
@@ -198,7 +205,7 @@ const DestinationCarousel = () => {
           font-weight: 700;
           line-height: 1.1;
           margin-bottom: 6px;
-          color: var(--color-text-primary);
+          color: #1a1410;
           letter-spacing: -0.02em;
         }
 
@@ -208,14 +215,14 @@ const DestinationCarousel = () => {
           font-weight: 500;
           line-height: 1.2;
           margin-bottom: 20px;
-          color: var(--color-accent-gold);
+          color: #8a6a20;
         }
 
         .slide-description {
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.7;
-          color: var(--color-text-secondary);
+          color: #3d3028;
           margin-bottom: 36px;
           max-width: 520px;
           margin-left: auto;
