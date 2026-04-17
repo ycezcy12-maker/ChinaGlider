@@ -4,8 +4,8 @@ export function extractLightColor(imageUrl) {
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       const canvas = document.createElement('canvas');
-      const sampleWidth = Math.min(img.naturalWidth, 400);
-      const sampleHeight = Math.min(Math.floor(img.naturalHeight * 0.35), 200);
+      const sampleWidth = Math.min(img.naturalWidth, 300);
+      const sampleHeight = Math.min(Math.floor(img.naturalHeight * 0.3), 150);
       canvas.width = sampleWidth;
       canvas.height = sampleHeight;
       const ctx = canvas.getContext('2d');
@@ -19,24 +19,31 @@ export function extractLightColor(imageUrl) {
         return;
       }
 
-      let lightestBrightness = -1;
-      let lightestR = 242, lightestG = 232, lightestB = 218;
-      const step = 4 * 8;
+      let totalR = 0, totalG = 0, totalB = 0, count = 0;
+      const step = 4 * 6;
 
       for (let i = 0; i < data.length; i += step) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
-        if (brightness > lightestBrightness) {
-          lightestBrightness = brightness;
-          lightestR = r;
-          lightestG = g;
-          lightestB = b;
-        }
+        totalR += data[i];
+        totalG += data[i + 1];
+        totalB += data[i + 2];
+        count++;
       }
 
-      resolve(`${lightestR}, ${lightestG}, ${lightestB}`);
+      if (count === 0) {
+        resolve('242, 232, 218');
+        return;
+      }
+
+      const avgR = totalR / count;
+      const avgG = totalG / count;
+      const avgB = totalB / count;
+
+      const lighten = (c) => Math.round(c + (255 - c) * 0.55);
+      const r = lighten(avgR);
+      const g = lighten(avgG);
+      const b = lighten(avgB);
+
+      resolve(`${r}, ${g}, ${b}`);
     };
     img.onerror = () => resolve('242, 232, 218');
     img.src = imageUrl;
