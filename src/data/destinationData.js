@@ -16,7 +16,7 @@ export const slides = [
     title: "From the Historic French Concession to the Modern Skyline",
     subtitle: "",
     description: "Citywalk through the most delicate streets and shops. Discover jazz bars, art deco architecture and world-class cuisine along the Bund.",
-    cta: { label: "Discover the Spot", path: "/poi-selection" },
+    cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
     imageUrl: "https://images.pexels.com/photos/2846217/pexels-photo-2846217.jpeg"
   },
   {
@@ -26,7 +26,7 @@ export const slides = [
     title: "Imperial Grandeur Meets Living Culture",
     subtitle: "",
     description: "Walk the same stones as emperors. From the Forbidden City to hidden hutong alleyways, Beijing holds centuries of stories waiting to be told.",
-    cta: { label: "View the Itinerary", path: "/trip-basics" },
+    cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
     imageUrl: "https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg"
   },
   {
@@ -46,7 +46,7 @@ export const slides = [
     title: "Karst Peaks Rising From Emerald Waters",
     subtitle: "",
     description: "Drift down the Li River past limestone towers and misty valleys. A landscape so surreal it has inspired Chinese ink painters for a thousand years.",
-    cta: { label: "Discover the Spot", path: "/poi-selection" },
+    cta: { label: "View the Itinerary", path: "/trip-basics" },
     imageUrl: "https://images.pexels.com/photos/3574523/pexels-photo-3574523.jpeg"
   },
   {
