@@ -5,12 +5,12 @@ import { slides } from '../data/destinationData';
 import { extractLightColor } from '../utils/extractLightColor';
 
 const SLIDE_FALLBACK_COLORS = [
-  '200, 218, 240',
-  '242, 232, 218',
-  '210, 200, 190',
-  '210, 220, 215',
-  '215, 230, 220',
-  '238, 225, 205',
+  '195, 220, 245',
+  '245, 235, 220',
+  '230, 222, 212',
+  '220, 232, 228',
+  '220, 238, 228',
+  '245, 232, 210',
 ];
 
 const DestinationCarousel = () => {
