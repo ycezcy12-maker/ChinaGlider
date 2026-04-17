@@ -163,13 +163,13 @@ const DestinationCarousel = () => {
         }
 
         .slide-tagline {
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 3px;
+          font-family: var(--font-heading);
+          font-size: 1.1rem;
+          font-weight: 800;
+          letter-spacing: 6px;
           text-transform: uppercase;
           color: var(--color-accent-terracotta);
-          margin-bottom: 14px;
-          opacity: 0.85;
+          margin-bottom: 10px;
         }
 
         .slide-title {
