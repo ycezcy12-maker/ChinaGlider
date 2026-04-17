@@ -1,4 +1,5 @@
 import introImage from '../assets/generation-0342ec9f-68bb-4056-8245-f43b34c4d1e3.png';
+import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整版.jpg';
 
 export const slides = [
   {
@@ -19,7 +20,7 @@ export const slides = [
     subtitle: "",
     description: "Citywalk through the most delicate streets and shops. Discover jazz bars, art deco architecture and world-class cuisine along the Bund.",
     cta: { label: "Discover Recommended Spots", path: "/poi-selection" },
-    imageUrl: introImage
+    imageUrl: shanghaiAutumnImage
   },
   {
     id: 3,
