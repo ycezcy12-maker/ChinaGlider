@@ -2,12 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { slides } from '../data/destinationData';
+import { extractLightColor } from '../utils/extractLightColor';
+
+const DEFAULT_COLOR = '242, 232, 218';
 
 const DestinationCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
   const [animating, setAnimating] = useState(false);
+  const [slideColors, setSlideColors] = useState(() => slides.map(() => DEFAULT_COLOR));
   const autoPlayRef = useRef(true);
+
+  useEffect(() => {
+    slides.forEach((slide, idx) => {
+      extractLightColor(slide.imageUrl).then((color) => {
+        setSlideColors((prev) => {
+          const next = [...prev];
+          next[idx] = color;
+          return next;
+        });
+      });
+    });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,7 +67,10 @@ const DestinationCarousel = () => {
           aria-hidden={idx !== currentIndex}
         >
           <img src={slide.imageUrl} alt={slide.tagline} className="slide-bg" />
-          <div className="slide-fade-top" />
+          <div
+            className="slide-fade-top"
+            style={{ '--slide-light-color': slideColors[idx] }}
+          />
         </div>
       ))}
 
@@ -128,12 +147,13 @@ const DestinationCarousel = () => {
           pointer-events: none;
           background: linear-gradient(
             to bottom,
-            #f2e8da 0%,
-            rgba(242, 232, 218, 0.92) 18%,
-            rgba(242, 232, 218, 0.6) 36%,
-            rgba(242, 232, 218, 0.1) 55%,
+            rgb(var(--slide-light-color, 242, 232, 218)) 0%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.92) 18%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.6) 36%,
+            rgba(var(--slide-light-color, 242, 232, 218), 0.1) 55%,
             transparent 70%
           );
+          transition: background 0.8s ease-in-out;
         }
 
         .hero-carousel-content {
