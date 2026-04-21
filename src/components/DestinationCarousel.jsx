@@ -215,6 +215,7 @@ const DestinationCarousel = () => {
           margin-bottom: 6px;
           color: #1a1410;
           letter-spacing: -0.02em;
+          white-space: nowrap;
         }
 
         .slide-subtitle {
