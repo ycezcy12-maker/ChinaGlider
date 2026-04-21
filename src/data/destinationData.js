@@ -37,8 +37,8 @@ export const slides = [
   {
     id: 4,
     type: "destination",
-    tagline: "Western Sichuan High Plateau",
-    title: "Sacred Peaks and Highland Soul",
+    tagline: "Western Sichuan",
+    title: "High Plateau, Sacred Peaks and Highland Soul",
     subtitle: "",
     description: "Journey through dramatic highlands, turquoise lakes and ancient monasteries. A rare wilderness that feels like the edge of the world.",
     cta: { label: "View the Itinerary", path: "/trip-basics" },
