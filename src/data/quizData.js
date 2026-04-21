@@ -3,7 +3,6 @@
 // Scoring multipliers: [1.0, 0.5, 0.5, 1.0] for [strongLeft, leanLeft, leanRight, strongRight]
 
 export const questions = [
-  // Phase 1 · Rational Orientation
   {
     id: 1,
     phase: 1,
@@ -19,126 +18,122 @@ export const questions = [
     id: 2,
     phase: 1,
     weight: 1.0,
-    dimension: 'selfExpansion',
-    text: "When you travel, what excites you most?",
-    leftLabel: "Discovering a new side of myself and experiencing inner growth.",
-    rightLabel: "Relaxing, enjoying good food, taking photos, and having fun.",
-    leftImpact: { soulSeeker: 1 },
-    rightImpact: { pleasureSeeker: 1 }
+    dimension: 'placeResonance',
+    text: "Walking through foreign streets, what kind of scenes do you prefer to capture?",
+    leftLabel: "Vibrant life moments: neighbors chatting, bustling markets, or smiling faces.",
+    rightLabel: "Quiet, solitary details: light on old walls, empty alleys, or traces of time.",
+    leftImpact: { connector: 1 },
+    rightImpact: { wanderer: 1 }
   },
   {
     id: 3,
     phase: 1,
     weight: 1.0,
-    dimension: 'placeResonance',
-    text: "When you think back on a trip, what do you remember more easily?",
-    leftLabel: "People's stories, local smells, and the overall atmosphere.",
-    rightLabel: "The places I visited and the itinerary I completed.",
-    leftImpact: { connector: 1 },
-    rightImpact: { wanderer: 1 }
+    dimension: 'openness',
+    text: "When looking for a place to eat, which option appeals more to you?",
+    leftLabel: "A reliable classic or a well-regarded local chain with proven quality.",
+    rightLabel: "An anonymous street stall you've never heard of, but is packed with locals.",
+    leftImpact: { comfortKeeper: 1 },
+    rightImpact: { explorer: 1 }
   },
   {
     id: 4,
     phase: 1,
     weight: 1.0,
-    dimension: 'openness',
-    text: "If you had one free day in a city, you would choose to:",
-    leftLabel: "Wander into unmarked alleys or visit a hidden, niche exhibition.",
-    rightLabel: "Go to the most famous landmarks and must-try restaurants.",
-    leftImpact: { explorer: 1 },
-    rightImpact: { comfortKeeper: 1 }
+    dimension: 'selfExpansion',
+    text: "After this trip ends, what do you most hope to keep in your memories?",
+    leftLabel: "A sense of pure physical relaxation and sensory satisfaction (e.g., a great meal or sleep).",
+    rightLabel: "A touching moment that offers clarity about yourself or a new realization about life.",
+    leftImpact: { pleasureSeeker: 1 },
+    rightImpact: { soulSeeker: 1 }
   },
-
-  // Phase 2 · Intuitive Projection
   {
     id: 5,
     phase: 2,
     weight: 1.5,
-    dimension: 'selfExpansion',
-    text: "Which scene feels more like your ideal travel moment?",
-    leftLabel: "A person alone, quietly meditating or immersed in thought.",
-    rightLabel: "Friends laughing together, raising glasses by the sea.",
-    leftImpact: { soulSeeker: 1 },
-    rightImpact: { pleasureSeeker: 1 }
+    dimension: 'structuration',
+    text: 'Regarding "survival logistics" like transport and stay, your strategy is:',
+    leftLabel: "Locking everything in advance to avoid wasting energy on logistics while on the move.",
+    rightLabel: "Having a rough idea only; figuring out transport and future stays as you go.",
+    leftImpact: { architect: 1 },
+    rightImpact: { flowWalker: 1 }
   },
   {
     id: 6,
     phase: 2,
     weight: 1.5,
-    dimension: 'placeResonance',
-    text: "Which type of travel experience attracts you more?",
-    leftLabel: "Chatting and interacting with local people.",
-    rightLabel: "Standing alone at a high viewpoint, overlooking the city.",
-    leftImpact: { connector: 1 },
-    rightImpact: { wanderer: 1 }
+    dimension: 'openness',
+    text: 'Regarding viral "photo spots" or "must-visit" landmarks:',
+    leftLabel: "They are famous for a reason; I don't want to miss out on these proven classics.",
+    rightLabel: "I'd rather discover off-the-beaten-path spots that only a few people know about.",
+    leftImpact: { comfortKeeper: 1 },
+    rightImpact: { explorer: 1 }
   },
   {
     id: 7,
     phase: 2,
     weight: 1.5,
-    dimension: 'openness',
-    text: "Where would you rather spend an entire day?",
-    leftLabel: "A remote or unconventional art installation / natural setting.",
-    rightLabel: "A lively, iconic tourist attraction.",
-    leftImpact: { explorer: 1 },
-    rightImpact: { comfortKeeper: 1 }
+    dimension: 'placeResonance',
+    text: "If you were to pick a background sound for this trip, you would choose:",
+    leftLabel: "Friendly street sounds, casual chats, or upbeat local radio music.",
+    rightLabel: "The sound of wind, rain, train tracks, or a cool, natural ambient noise.",
+    leftImpact: { connector: 1 },
+    rightImpact: { wanderer: 1 }
   },
   {
     id: 8,
     phase: 2,
     weight: 1.5,
-    dimension: 'structuration',
-    text: "Which image makes you feel more at ease?",
-    leftLabel: "A tightly planned itinerary filled with notes.",
-    rightLabel: 'A blank map with the words "go with the flow".',
-    leftImpact: { architect: 1 },
-    rightImpact: { flowWalker: 1 }
+    dimension: 'selfExpansion',
+    text: 'After a long day of intense exploration, how do you most like to "recharge"?',
+    leftLabel: "Finding a comfortable way to lounge, having snacks, and letting your senses rest.",
+    rightLabel: "Writing down your feelings or listening to music alone to sort through your thoughts.",
+    leftImpact: { pleasureSeeker: 1 },
+    rightImpact: { soulSeeker: 1 }
   },
-
-  // Phase 3 · Integrative & Situational
   {
     id: 9,
     phase: 3,
     weight: 2.0,
-    dimension: 'mixed',
-    text: "A friend invites you to an unknown island — leaving tomorrow. What do you do?",
-    leftLabel: "Immediately check flights, safety, and logistics. I need a plan.",
-    rightLabel: "Say yes right away and figure things out as you go.",
+    dimension: 'structuration',
+    text: "If weather or unexpected events ruin your original plans:",
+    leftLabel: "I feel annoyed and immediately look for alternatives to avoid wasting time.",
+    rightLabel: "I take it as a sign, find a spot to hide from the rain, and wait to see what happens.",
     leftImpact: { architect: 1 },
-    rightImpact: { flowWalker: 0.5, explorer: 0.5 }
+    rightImpact: { flowWalker: 1 }
   },
   {
     id: 10,
     phase: 3,
-    weight: 1.0,
-    dimension: 'selfExpansion',
-    text: "Think of the most memorable trip you have ever had. It made you feel:",
-    leftLabel: "I understood myself better — it was meaningful and transformative.",
-    rightLabel: "I felt relaxed and genuinely happy — it was pure enjoyment.",
-    leftImpact: { soulSeeker: 1 },
-    rightImpact: { pleasureSeeker: 1 }
+    weight: 1.5,
+    dimension: 'openness',
+    text: "Which travel philosophy do you resonate with more?",
+    leftLabel: "Travel is about finding a familiar sense of security and certain beauty in a foreign world.",
+    rightLabel: "Travel is about breaking daily inertia and colliding with unpredictable experiences.",
+    leftImpact: { comfortKeeper: 1 },
+    rightImpact: { explorer: 1 }
   },
   {
     id: 11,
     phase: 3,
-    weight: 1.0,
-    dimension: 'placeResonance',
-    text: "On a trip, which feeling matters more to you?",
-    leftLabel: "A deep connection with the local people and their lives.",
-    rightLabel: "A sense of freedom and solitude in the places I discover.",
-    leftImpact: { connector: 1 },
-    rightImpact: { wanderer: 1 }
+    weight: 1.5,
+    dimension: 'selfExpansion',
+    text: "When packing to head home, what do you feel most reluctant to leave behind?",
+    leftLabel: "The addictive rhythm of life here and the comfortable vibe missing at home.",
+    rightLabel: "The unique mindset gained and the version of yourself that shifted during the trip.",
+    leftImpact: { pleasureSeeker: 1 },
+    rightImpact: { soulSeeker: 1 }
   },
   {
     id: 12,
     phase: 3,
-    weight: 0.5,
-    dimension: 'mixed',
-    text: "Which sound feels more calming and comforting to you?",
-    leftLabel: "The noise of a busy night market — voices, laughter, life.",
-    rightLabel: "The sound of wind in the forest and footsteps on a quiet path.",
-    leftImpact: { connector: 1, pleasureSeeker: 1 },
-    rightImpact: { wanderer: 1, soulSeeker: 1 }
+    weight: 1.0,
+    dimension: 'placeResonance',
+    text: "Which social state do you prefer during your travels?",
+    leftLabel: "Observing people and interacting with locals to feel the human energy.",
+    rightLabel: "Moving through like an invisible person, enjoying the detachment of being alone in a crowd.",
+    leftImpact: { connector: 1 },
+    rightImpact: { wanderer: 1 }
   }
 ];
 
