@@ -298,17 +298,17 @@ const Quiz = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 32px 16px 56px;
+          padding: 40px 24px 64px;
         }
 
         /* Card */
         .quiz-card {
           background: #fff;
-          border-radius: 20px;
-          box-shadow: 0 8px 48px rgba(0,0,0,0.09);
+          border-radius: 24px;
+          box-shadow: 0 8px 56px rgba(0,0,0,0.09);
           width: 100%;
-          max-width: 720px;
-          padding: 48px 48px 40px;
+          max-width: 900px;
+          padding: 64px 72px 56px;
         }
 
         /* Header */
@@ -316,17 +316,17 @@ const Quiz = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 40px;
+          margin-bottom: 52px;
         }
 
         .btn-back {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           background: none;
           border: none;
           color: var(--color-text-secondary);
-          font-size: 0.88rem;
+          font-size: 1rem;
           cursor: pointer;
           padding: 6px 0;
           transition: color 0.2s;
@@ -336,22 +336,22 @@ const Quiz = () => {
         .qc-meta {
           display: flex;
           align-items: center;
-          gap: 14px;
+          gap: 16px;
         }
 
         .phase-badge {
           background: var(--color-accent-teal);
           color: #fff;
-          padding: 5px 14px;
+          padding: 7px 18px;
           border-radius: 20px;
-          font-size: 0.74rem;
+          font-size: 0.82rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.06em;
         }
 
         .q-counter {
-          font-size: 0.85rem;
+          font-size: 1rem;
           font-weight: 600;
           color: var(--color-text-secondary);
           letter-spacing: 0.06em;
@@ -359,10 +359,10 @@ const Quiz = () => {
 
         /* Question text */
         .q-text {
-          font-size: 1.65rem;
+          font-size: 2rem;
           color: var(--color-text-primary);
           line-height: 1.35;
-          margin-bottom: 48px;
+          margin-bottom: 56px;
           text-align: center;
         }
 
@@ -370,20 +370,20 @@ const Quiz = () => {
         .spectrum-wrap {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 32px;
         }
 
         /* Pole labels */
         .poles {
           display: flex;
           justify-content: space-between;
-          gap: 24px;
+          gap: 32px;
         }
 
         .pole {
-          font-size: 0.9rem;
+          font-size: 1.05rem;
           color: var(--color-text-secondary);
-          line-height: 1.45;
+          line-height: 1.5;
           max-width: 42%;
         }
 
@@ -393,7 +393,7 @@ const Quiz = () => {
         /* Track */
         .cube-track {
           position: relative;
-          height: 72px;
+          height: 88px;
           cursor: grab;
           user-select: none;
           touch-action: none;
@@ -404,9 +404,9 @@ const Quiz = () => {
           position: absolute;
           top: 50%;
           left: 0; right: 0;
-          height: 4px;
+          height: 5px;
           background: rgba(0,0,0,0.08);
-          border-radius: 2px;
+          border-radius: 3px;
           transform: translateY(-50%);
         }
 
@@ -414,9 +414,9 @@ const Quiz = () => {
           position: absolute;
           top: 50%;
           left: 0;
-          height: 4px;
+          height: 5px;
           background: var(--color-accent-terracotta);
-          border-radius: 2px;
+          border-radius: 3px;
           transform: translateY(-50%);
           transition: width 0.18s ease;
           pointer-events: none;
@@ -427,19 +427,19 @@ const Quiz = () => {
           position: absolute;
           top: 50%;
           transform: translate(-50%, -50%);
-          width: 12px;
-          height: 12px;
+          width: 16px;
+          height: 16px;
           border-radius: 50%;
           background: rgba(0,0,0,0.12);
-          border: 2px solid #fff;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+          border: 3px solid #fff;
+          box-shadow: 0 1px 6px rgba(0,0,0,0.14);
           cursor: pointer;
           transition: background 0.2s, transform 0.2s;
           z-index: 1;
         }
         .snap-dot.snap-active {
           background: var(--color-accent-terracotta);
-          transform: translate(-50%, -50%) scale(1.3);
+          transform: translate(-50%, -50%) scale(1.35);
         }
 
         /* Cube handle */
@@ -447,8 +447,8 @@ const Quiz = () => {
           position: absolute;
           top: 50%;
           transform: translate(-50%, -50%);
-          width: 80px;
-          height: 48px;
+          width: 108px;
+          height: 60px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -463,21 +463,21 @@ const Quiz = () => {
           width: 100%;
           height: 100%;
           background: var(--color-accent-terracotta);
-          border-radius: 10px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #fff;
-          font-size: 0.68rem;
+          font-size: 0.78rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.07em;
           text-align: center;
-          padding: 4px 6px;
+          padding: 6px 8px;
           box-shadow:
-            0 4px 16px rgba(192,108,84,0.35),
+            0 6px 20px rgba(192,108,84,0.35),
             inset 0 1px 0 rgba(255,255,255,0.2),
-            inset 0 -2px 0 rgba(0,0,0,0.12);
+            inset 0 -3px 0 rgba(0,0,0,0.12);
           user-select: none;
           transition: background 0.2s;
           line-height: 1.2;
@@ -492,23 +492,24 @@ const Quiz = () => {
         .position-labels {
           display: flex;
           justify-content: space-between;
-          margin-top: -12px;
+          margin-top: -16px;
         }
 
         .pos-label {
           flex: 1;
           text-align: center;
-          font-size: 0.73rem;
+          font-size: 0.85rem;
           color: var(--color-text-secondary);
           background: none;
           border: 1px solid rgba(0,0,0,0.1);
           border-radius: 6px;
-          padding: 6px 4px;
+          padding: 10px 6px;
           cursor: pointer;
-          margin: 0 3px;
+          margin: 0 4px;
           transition: all 0.18s;
           font-family: var(--font-body);
-          line-height: 1.2;
+          line-height: 1.3;
+          border-radius: 8px;
         }
         .pos-label:first-child { margin-left: 0; }
         .pos-label:last-child { margin-right: 0; }
@@ -529,16 +530,16 @@ const Quiz = () => {
         /* Hint */
         .spectrum-hint {
           text-align: center;
-          font-size: 0.85rem;
+          font-size: 1rem;
           color: var(--color-text-secondary);
           font-style: italic;
-          min-height: 20px;
+          min-height: 22px;
           margin: 0;
         }
 
         /* Footer */
         .qc-footer {
-          margin-top: 40px;
+          margin-top: 52px;
           display: flex;
           justify-content: center;
         }
@@ -547,9 +548,9 @@ const Quiz = () => {
           background: var(--color-accent-terracotta);
           color: #fff;
           border: none;
-          padding: 15px 48px;
+          padding: 18px 60px;
           border-radius: 40px;
-          font-size: 1rem;
+          font-size: 1.1rem;
           font-weight: 700;
           font-family: var(--font-body);
           cursor: pointer;
@@ -569,13 +570,17 @@ const Quiz = () => {
           transform: none;
         }
 
+        @media (max-width: 900px) {
+          .quiz-card { padding: 48px 40px 40px; }
+        }
+
         @media (max-width: 600px) {
-          .quiz-card { padding: 32px 20px 28px; }
-          .q-text { font-size: 1.3rem; margin-bottom: 36px; }
-          .pole { font-size: 0.8rem; max-width: 44%; }
-          .cube-handle { width: 68px; height: 42px; }
-          .cube-face-front { font-size: 0.6rem; border-radius: 8px; }
-          .pos-label { font-size: 0.65rem; padding: 5px 2px; }
+          .quiz-card { padding: 32px 24px 28px; }
+          .q-text { font-size: 1.45rem; margin-bottom: 40px; }
+          .pole { font-size: 0.88rem; max-width: 44%; }
+          .cube-handle { width: 84px; height: 50px; }
+          .cube-face-front { font-size: 0.68rem; border-radius: 10px; }
+          .pos-label { font-size: 0.75rem; padding: 6px 2px; }
         }
       `}</style>
     </div>
