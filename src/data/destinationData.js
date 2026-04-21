@@ -1,6 +1,7 @@
 import introImage from '../assets/generation-958ad02a-2d62-4767-afd0-411bae492b96.png';
 import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整版.jpg';
 import beijingImage from '../assets/generation-05921bae-3256-4616-9d0f-197191b4f940.png';
+import sichuanImage from '../assets/微信图片_20260421114221_53_12_LE_upscale_prime.jpg';
 
 export const slides = [
   {
@@ -41,7 +42,7 @@ export const slides = [
     subtitle: "",
     description: "Journey through dramatic highlands, turquoise lakes and ancient monasteries. A rare wilderness that feels like the edge of the world.",
     cta: { label: "View the Itinerary", path: "/trip-basics" },
-    imageUrl: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg"
+    imageUrl: sichuanImage
   },
   {
     id: 5,
