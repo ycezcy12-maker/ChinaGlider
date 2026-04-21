@@ -73,7 +73,7 @@ const DestinationCarousel = () => {
           className={`hero-slide ${idx === currentIndex ? 'active' : ''} ${idx === prevIndex && animating ? 'exit' : ''}`}
           aria-hidden={idx !== currentIndex}
         >
-          <img src={slide.imageUrl} alt={slide.tagline} className={`slide-bg${slide.id === 3 ? ' slide-bg-center' : ''}`} />
+          <img src={slide.imageUrl} alt={slide.tagline} className={`slide-bg${slide.id === 3 ? ' slide-bg-center' : ''}${slide.id === 4 ? ' slide-bg-top' : ''}`} />
           <div
             className="slide-fade-top"
             style={{ '--slide-light-color': slideColors[idx] }}
@@ -150,6 +150,10 @@ const DestinationCarousel = () => {
 
         .slide-bg-center {
           object-position: center center;
+        }
+
+        .slide-bg-top {
+          object-position: center top;
         }
 
         .slide-fade-top {
