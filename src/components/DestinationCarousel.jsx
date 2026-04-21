@@ -153,7 +153,7 @@ const DestinationCarousel = () => {
         }
 
         .slide-bg-top {
-          object-position: center top;
+          object-position: center 15%;
         }
 
         .slide-fade-top {
