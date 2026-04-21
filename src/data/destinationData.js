@@ -2,6 +2,7 @@ import introImage from '../assets/generation-958ad02a-2d62-4767-afd0-411bae492b9
 import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整版.jpg';
 import beijingImage from '../assets/generation-05921bae-3256-4616-9d0f-197191b4f940.png';
 import sichuanImage from '../assets/generation-c22b3672-4ea8-46f1-8289-b375d1ac0a93.png';
+import guilinImage from '../assets/pexels-quang-nguyen-vinh-222549-6346494.jpg';
 
 export const slides = [
   {
@@ -52,7 +53,7 @@ export const slides = [
     subtitle: "",
     description: "Drift down the Li River past limestone towers and misty valleys. A landscape so surreal it has inspired Chinese ink painters for a thousand years.",
     cta: { label: "View the Itinerary", path: "/trip-basics" },
-    imageUrl: "https://images.pexels.com/photos/3574523/pexels-photo-3574523.jpeg"
+    imageUrl: guilinImage
   },
   {
     id: 6,
