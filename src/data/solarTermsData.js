@@ -1,3 +1,9 @@
+import lichunImage from '../assets/1.立春.jpg';
+import yushuiImage from '../assets/2.雨水.jpg';
+import jingzheImage from '../assets/3.惊蛰.jpg';
+import chunfenImage from '../assets/4.春分.png';
+import qingmingImage from '../assets/5.清明.png';
+
 export const solarTerms = [
   {
     id: 1,
@@ -6,7 +12,7 @@ export const solarTerms = [
     meaning: "Beginning of Spring",
     date: "Feb 3–5",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/3798396/pexels-photo-3798396.jpeg",
+    imageUrl: lichunImage,
     tags: ["Cherry Blossom", "Plum Flower", "Misty Waterways"],
     travelClue: "First blooms open — seek plum blossoms and early spring green before the crowds arrive.",
     destinations: [
@@ -34,7 +40,7 @@ export const solarTerms = [
     meaning: "Rain Water",
     date: "Feb 18–20",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg",
+    imageUrl: yushuiImage,
     tags: ["Misty Mountains", "Ancient Water Towns", "Ink-wash Scenery"],
     travelClue: "Drizzle transforms landscapes into ink paintings — embrace the mist rather than avoid it.",
     destinations: [
@@ -57,7 +63,7 @@ export const solarTerms = [
     meaning: "Awakening from Hibernation",
     date: "Mar 5–7",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/2739664/pexels-photo-2739664.jpeg",
+    imageUrl: jingzheImage,
     tags: ["Spring Thunder", "Tea Garden", "Forest Trails"],
     travelClue: "Nature stirs after winter — the first thunder signals the perfect time for tea picking and river rafting.",
     destinations: [
@@ -80,7 +86,7 @@ export const solarTerms = [
     meaning: "Vernal Equinox",
     date: "Mar 20–21",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/97778/pexels-photo-97778.jpeg",
+    imageUrl: chunfenImage,
     tags: ["Rapeseed Fields", "Peony Festival", "Day = Night"],
     travelClue: "Equal days and nights mark peak bloom — golden rapeseed valleys and the Peony Festival peak simultaneously.",
     destinations: [
@@ -108,7 +114,7 @@ export const solarTerms = [
     meaning: "Fresh Green",
     date: "Apr 4–6",
     season: "spring",
-    imageUrl: "https://images.pexels.com/photos/1772973/pexels-photo-1772973.jpeg",
+    imageUrl: qingmingImage,
     tags: ["Sea of Clouds", "Classical Gardens", "Crystal Air"],
     travelClue: "Air is clearest of the year — mountain clouds and garden greenery are at their most vivid.",
     destinations: [
