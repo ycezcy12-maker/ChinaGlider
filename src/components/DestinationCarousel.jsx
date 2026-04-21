@@ -161,7 +161,7 @@ const DestinationCarousel = () => {
         }
 
         .slide-bg-silkroad {
-          object-position: center 30%;
+          object-position: center 15%;
         }
 
         .slide-fade-top {
