@@ -1,7 +1,7 @@
 import lichunImage from '../assets/1.立春.jpg';
 import yushuiImage from '../assets/2.雨水.jpg';
 import jingzheImage from '../assets/3.惊蛰.jpg';
-import chunfenImage from '../assets/4.春分.png';
+import chunfenImage from '../assets/4.春分.jpg';
 import qingmingImage from '../assets/5.清明.png';
 
 export const solarTerms = [
