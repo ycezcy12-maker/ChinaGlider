@@ -1,6 +1,6 @@
 import introImage from '../assets/generation-958ad02a-2d62-4767-afd0-411bae492b96.png';
 import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整版.jpg';
-import beijingImage from '../assets/generation-ec03831c-7db8-4b45-b8ec-ee264f8faf62.png';
+import beijingImage from '../assets/generation-6c112160-1942-4107-97b5-57df2995fcee.png';
 
 export const slides = [
   {
