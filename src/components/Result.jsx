@@ -1,17 +1,13 @@
 import React from 'react';
 import { Link, useLocation, Navigate } from 'react-router-dom';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const Result = () => {
   const location = useLocation();
-  const { result, scores } = location.state || {};
+  const { result, scores, winners } = location.state || {};
 
-  // If no result is passed, redirect to quiz
-  if (!result) {
-    return <Navigate to="/quiz" replace />;
-  }
+  if (!result) return <Navigate to="/quiz" replace />;
 
-  // Calculate percentages for the spectrum breakdown
   const calculatePercent = (sideA, sideB) => {
     if (!scores) return 50;
     const valA = scores[sideA] || 0;
@@ -21,234 +17,338 @@ const Result = () => {
     return Math.round((valA / total) * 100);
   };
 
-  const spectrum = [
-    { label: 'Self-Expansion', value: calculatePercent('soulSeeker', 'pleasureSeeker') },
-    { label: 'Place Resonance', value: calculatePercent('connector', 'wanderer') },
-    { label: 'Openness', value: calculatePercent('explorer', 'comfortKeeper') },
-    { label: 'Structuration', value: calculatePercent('architect', 'flowWalker') }
+  const dimensions = [
+    {
+      label: 'Self-Expansion',
+      sideA: 'Soul Seeker',
+      sideB: 'Pleasure Seeker',
+      percent: calculatePercent('soulSeeker', 'pleasureSeeker'),
+      winner: winners?.selfExpansion === 'soulSeeker' ? 'Soul Seeker' : 'Pleasure Seeker'
+    },
+    {
+      label: 'Place Resonance',
+      sideA: 'Connector',
+      sideB: 'Wanderer',
+      percent: calculatePercent('connector', 'wanderer'),
+      winner: winners?.placeResonance === 'connector' ? 'Connector' : 'Wanderer'
+    },
+    {
+      label: 'Openness',
+      sideA: 'Explorer',
+      sideB: 'Comfort Keeper',
+      percent: calculatePercent('explorer', 'comfortKeeper'),
+      winner: winners?.openness === 'explorer' ? 'Explorer' : 'Comfort Keeper'
+    },
+    {
+      label: 'Structuration',
+      sideA: 'Architect',
+      sideB: 'Flow Walker',
+      percent: calculatePercent('architect', 'flowWalker'),
+      winner: winners?.structuration === 'architect' ? 'Architect' : 'Flow Walker'
+    }
   ];
 
   return (
     <div className="result-page">
-      <div className="container result-content">
-        <div className="result-header text-center fade-in">
-          <p className="pre-title">Travel Soul Spectrum Result</p>
-          <h1 className="result-title">{result.name}</h1>
-          <h2 className="result-subtitle">{result.title}</h2>
+      <div className="result-hero">
+        <p className="pre-label">Travel Soul Spectrum</p>
+        <h1 className="archetype-name">{result.name}</h1>
+        <p className="archetype-title">{result.title}</p>
+        <blockquote className="archetype-quote">"{result.quote}"</blockquote>
+      </div>
+
+      <div className="result-body">
+        <div className="result-grid">
+
+          {/* Description */}
+          <div className="result-section result-description-card">
+            <span className="section-label">Who You Are</span>
+            <p className="description-text">{result.description}</p>
+          </div>
+
+          {/* Dimension breakdown */}
+          <div className="result-section">
+            <span className="section-label">Your Spectrum Breakdown</span>
+            <div className="dimensions-list">
+              {dimensions.map((dim, i) => (
+                <div className="dimension-row" key={i}>
+                  <div className="dim-meta">
+                    <span className="dim-name">{dim.label}</span>
+                    <span className="dim-winner">{dim.winner}</span>
+                  </div>
+                  <div className="dim-track">
+                    <div className="dim-a-label">{dim.sideA}</div>
+                    <div className="dim-bar-outer">
+                      <div className="dim-bar-fill" style={{ width: `${dim.percent}%` }} />
+                      <div className="dim-bar-fill-b" style={{ width: `${100 - dim.percent}%` }} />
+                    </div>
+                    <div className="dim-b-label">{dim.sideB}</div>
+                  </div>
+                  <div className="dim-pct">{dim.percent}% / {100 - dim.percent}%</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Recommendation */}
+          <div className="result-section result-recommendation-card">
+            <span className="section-label">Curated For You</span>
+            <p className="recommendation-text">{result.recommendation}</p>
+          </div>
+
         </div>
 
-        <div className="result-card fade-in" style={{ animationDelay: '0.2s' }}>
-          <div className="result-illustration">
-            <div className="illustration-placeholder">
-              <Star size={64} color="#fff" />
-            </div>
-            <div className="archetype-tag">Archetype</div>
-          </div>
-
-          <div className="result-details">
-            <blockquote className="result-quote">"{result.quote}"</blockquote>
-            <p className="result-description">{result.description}</p>
-
-            <div className="spectrum-breakdown">
-              <h3>Your Spectrum Breakdown</h3>
-              <div className="spectrum-grid">
-                {spectrum.map((item, idx) => (
-                  <div className="spectrum-item" key={idx}>
-                    <span className="dim-label">{item.label}</span>
-                    <div className="dim-bar">
-                      <div className="dim-fill" style={{ width: `${item.value}%` }}></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="recommendation-box">
-              <h3>Recommended Experience</h3>
-              <p>{result.recommendation}</p>
-            </div>
-
-            <div className="action-area">
-              <p className="next-step-hint">We've curated a list of spots just for you.</p>
-              <Link to="/poi-selection" state={{ result, scores }} className="btn-primary">
-                Explore Your Experience Pool <ArrowRight size={20} style={{ marginLeft: '8px' }} />
-              </Link>
-            </div>
-          </div>
+        <div className="result-cta">
+          <p className="cta-hint">Ready to explore spots tailored to your travel soul?</p>
+          <Link to="/poi-selection" state={{ result, scores }} className="cta-btn">
+            Explore Your Experience Pool
+            <ArrowRight size={18} style={{ marginLeft: '10px' }} />
+          </Link>
+          <Link to="/quiz" className="retake-link">Retake the Assessment</Link>
         </div>
       </div>
 
       <style>{`
         .result-page {
           min-height: 100vh;
-          padding-top: 100px;
-          padding-bottom: 60px;
-          background-color: var(--color-bg-paper);
+          background: linear-gradient(160deg, #faf8f5 0%, #f0ebe3 100%);
         }
 
-        .pre-title {
-          font-family: var(--font-body);
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          color: var(--color-text-secondary);
-          margin-bottom: 16px;
-        }
-
-        .result-title {
-          font-size: 3.5rem;
-          color: var(--color-accent-terracotta);
-          margin-bottom: 12px;
-          line-height: 1.1;
-        }
-
-        .result-subtitle {
-            font-size: 1.5rem;
-            color: var(--color-text-primary);
-            margin-bottom: 48px;
-            font-weight: 400;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.4;
-        }
-
-        .result-card {
-          background: #fff;
-          border-radius: var(--border-radius-lg);
-          overflow: hidden;
-          box-shadow: var(--shadow-card);
-          max-width: 900px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .result-illustration {
-          background-color: var(--color-text-primary);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 400px;
-          position: relative;
-        }
-
-        .archetype-tag {
-          position: absolute;
-          bottom: 20px;
-          background: rgba(255,255,255,0.1);
-          padding: 4px 12px;
-          border-radius: 4px;
+        /* ── Hero ── */
+        .result-hero {
+          background: var(--color-text-primary);
           color: #fff;
-          font-size: 0.7rem;
+          text-align: center;
+          padding: 120px 24px 80px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .result-hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 60% 40%, rgba(192,108,84,0.18) 0%, transparent 65%);
+          pointer-events: none;
+        }
+
+        .pre-label {
+          font-size: 0.78rem;
+          font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.18em;
+          color: rgba(255,255,255,0.55);
+          margin-bottom: 20px;
         }
 
-        .illustration-placeholder {
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          border: 2px solid rgba(255,255,255,0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .archetype-name {
+          font-size: clamp(2.8rem, 7vw, 5rem);
+          color: #fff;
+          margin-bottom: 16px;
+          line-height: 1.05;
         }
 
-        .result-details {
-          padding: 60px 40px;
+        .archetype-title {
+          font-size: 1.2rem;
+          color: rgba(255,255,255,0.7);
+          margin-bottom: 32px;
+          max-width: 560px;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.5;
+        }
+
+        .archetype-quote {
+          font-size: 1.5rem;
+          font-style: italic;
+          font-family: var(--font-heading);
+          color: var(--color-accent-terracotta);
+          max-width: 640px;
+          margin: 0 auto;
+          line-height: 1.45;
+          border: none;
+          padding: 0;
+        }
+
+        /* ── Body ── */
+        .result-body {
+          max-width: 820px;
+          margin: 0 auto;
+          padding: 64px 24px 80px;
+        }
+
+        .result-grid {
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          gap: 28px;
+          margin-bottom: 56px;
         }
 
-        .result-quote {
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--color-accent-terracotta);
-            margin-bottom: 24px;
-            font-family: var(--font-heading);
+        .result-section {
+          background: #fff;
+          border-radius: 16px;
+          padding: 36px 40px;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.06);
         }
 
-        .result-description {
+        .section-label {
+          display: block;
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          color: var(--color-accent-terracotta);
+          margin-bottom: 18px;
+        }
+
+        /* Description */
+        .description-text {
           font-size: 1.1rem;
-          margin-bottom: 32px;
           color: var(--color-text-primary);
-          line-height: 1.6;
+          line-height: 1.7;
+          margin: 0;
         }
 
-        .spectrum-breakdown {
-            margin-bottom: 32px;
+        /* Dimensions */
+        .dimensions-list {
+          display: flex;
+          flex-direction: column;
+          gap: 22px;
         }
 
-        .spectrum-breakdown h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-            color: var(--color-text-secondary);
+        .dimension-row {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
         }
 
-        .spectrum-grid {
-            display: grid;
-            gap: 12px;
+        .dim-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
         }
 
-        .spectrum-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        .dim-name {
+          font-size: 0.82rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: var(--color-text-secondary);
         }
 
-        .dim-label {
-            width: 140px;
-            font-size: 0.85rem;
-            color: var(--color-text-primary);
+        .dim-winner {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--color-accent-terracotta);
         }
 
-        .dim-bar {
-            flex: 1;
-            height: 6px;
-            background: rgba(0,0,0,0.05);
-            border-radius: 3px;
-            overflow: hidden;
+        .dim-track {
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
-        .dim-fill {
-            height: 100%;
-            background: var(--color-accent-teal);
-            border-radius: 3px;
+        .dim-a-label, .dim-b-label {
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+          white-space: nowrap;
+          min-width: 88px;
         }
 
-        .recommendation-box {
-            background: rgba(192, 108, 84, 0.05);
-            padding: 24px;
-            border-radius: 8px;
-            margin-bottom: 32px;
-            border-left: 4px solid var(--color-accent-terracotta);
+        .dim-b-label { text-align: right; }
+
+        .dim-bar-outer {
+          flex: 1;
+          height: 8px;
+          border-radius: 4px;
+          overflow: hidden;
+          display: flex;
+          background: rgba(0,0,0,0.04);
         }
 
-        .recommendation-box h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px;
-            color: var(--color-text-secondary);
+        .dim-bar-fill {
+          height: 100%;
+          background: var(--color-accent-terracotta);
+          border-radius: 4px 0 0 4px;
+          transition: width 0.8s ease;
         }
 
-        .next-step-hint {
+        .dim-bar-fill-b {
+          height: 100%;
+          background: var(--color-accent-teal);
+          border-radius: 0 4px 4px 0;
+          transition: width 0.8s ease;
+        }
+
+        .dim-pct {
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+          white-space: nowrap;
+          min-width: 80px;
+          text-align: right;
+        }
+
+        /* Recommendation */
+        .result-recommendation-card {
+          border-left: 4px solid var(--color-accent-terracotta);
+          background: linear-gradient(135deg, #fff 0%, #fdf6f3 100%);
+        }
+
+        .recommendation-text {
+          font-size: 1.05rem;
+          color: var(--color-text-primary);
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        /* CTA */
+        .result-cta {
+          text-align: center;
+        }
+
+        .cta-hint {
+          font-size: 1rem;
+          color: var(--color-text-secondary);
+          margin-bottom: 20px;
+        }
+
+        .cta-btn {
+          display: inline-flex;
+          align-items: center;
+          background: var(--color-accent-terracotta);
+          color: #fff;
+          padding: 16px 40px;
+          border-radius: 40px;
+          font-size: 1rem;
+          font-weight: 700;
+          text-decoration: none;
+          transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+          box-shadow: 0 6px 24px rgba(192,108,84,0.28);
+        }
+
+        .cta-btn:hover {
+          background: #b05840;
+          box-shadow: 0 8px 32px rgba(192,108,84,0.38);
+          transform: translateY(-2px);
+        }
+
+        .retake-link {
+          display: block;
+          margin-top: 20px;
           font-size: 0.9rem;
           color: var(--color-text-secondary);
-          margin-bottom: 16px;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          transition: color 0.2s;
         }
 
-        @media (max-width: 768px) {
-          .result-card {
-            grid-template-columns: 1fr;
-          }
-          .result-illustration {
-            min-height: 250px;
-          }
+        .retake-link:hover { color: var(--color-accent-terracotta); }
+
+        @media (max-width: 600px) {
+          .result-hero { padding: 100px 20px 60px; }
+          .result-section { padding: 28px 24px; }
+          .dim-a-label, .dim-b-label { min-width: 64px; font-size: 0.68rem; }
+          .dim-pct { min-width: 60px; font-size: 0.68rem; }
         }
       `}</style>
     </div>

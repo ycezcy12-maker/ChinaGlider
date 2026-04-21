@@ -1,131 +1,140 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { questions, personalityTypes } from '../data/quizData';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [scores, setScores] = useState({
-    soulSeeker: 0,
-    pleasureSeeker: 0,
-    connector: 0,
-    wanderer: 0,
-    explorer: 0,
-    comfortKeeper: 0,
-    architect: 0,
-    flowWalker: 0
+    soulSeeker: 0, pleasureSeeker: 0, connector: 0, wanderer: 0,
+    explorer: 0, comfortKeeper: 0, architect: 0, flowWalker: 0
   });
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [history, setHistory] = useState([]); // Stack of { scores, selectedOptions }
+  const [cubeIndex, setCubeIndex] = useState(0); // which face of the cube is active
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [history, setHistory] = useState([]);
+  const [transitioning, setTransitioning] = useState(false);
   const navigate = useNavigate();
+  const cubeRef = useRef(null);
 
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  const totalFaces = currentQuestion.options.length;
 
-  const handleOptionClick = (option) => {
-    if (currentQuestion.multiSelect) {
-      // Toggle selection
-      const isSelected = selectedOptions.find(o => o.id === option.id);
-      if (isSelected) {
-        setSelectedOptions(selectedOptions.filter(o => o.id !== option.id));
-      } else {
-        if (selectedOptions.length < (currentQuestion.maxSelect || 1)) {
-          setSelectedOptions([...selectedOptions, option]);
-        }
-      }
-      return;
-    }
-
-    // Single select logic
-    const newScores = calculateNewScores(scores, [option]);
-    const newHistory = [...history, { scores, selectedOptions: [option] }];
-    setHistory(newHistory);
-    setScores(newScores);
-    moveToNext(newScores, newHistory);
+  const getPhase = () => {
+    if (currentQuestionIndex < 4) return "Phase 1 · Rational Orientation";
+    if (currentQuestionIndex < 8) return "Phase 2 · Intuitive Projection";
+    return "Phase 3 · Integrative & Situational";
   };
 
-  const calculateNewScores = (currentScores, selectedOptionsList) => {
-    const newScores = { ...currentScores };
-    const weight = currentQuestion.weight || 1.0;
+  const navigateCube = (direction) => {
+    const newIndex = (cubeIndex + direction + totalFaces) % totalFaces;
+    setCubeIndex(newIndex);
+  };
 
+  const handleDragStart = (clientX) => {
+    setIsDragging(true);
+    setDragStartX(clientX);
+  };
+
+  const handleDragEnd = (clientX) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const delta = dragStartX - clientX;
+    if (Math.abs(delta) > 50) {
+      navigateCube(delta > 0 ? 1 : -1);
+    }
+  };
+
+  const calculateNewScores = (currentScores, selectedOptionsList, question) => {
+    const newScores = { ...currentScores };
+    const weight = question.weight || 1.0;
     selectedOptionsList.forEach(option => {
       if (option.impact) {
         Object.keys(option.impact).forEach(side => {
-          newScores[side] += (option.impact[side] * weight);
+          newScores[side] += option.impact[side] * weight;
         });
       }
     });
     return newScores;
   };
 
-  const moveToNext = (finalScores, finalHistory) => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setTimeout(() => {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedOptions([]);
-      }, 300);
-    } else {
-      finishQuiz(finalScores, finalHistory);
-    }
-  };
+  const commitSelection = (option) => {
+    if (transitioning) return;
 
-  const handleNextClick = () => {
-    const newScores = calculateNewScores(scores, selectedOptions);
-    const newHistory = [...history, { scores, selectedOptions }];
+    if (currentQuestion.multiSelect) {
+      const isSelected = selectedOptions.find(o => o.id === option.id);
+      if (isSelected) {
+        setSelectedOptions(selectedOptions.filter(o => o.id !== option.id));
+      } else if (selectedOptions.length < (currentQuestion.maxSelect || 1)) {
+        setSelectedOptions([...selectedOptions, option]);
+      }
+      return;
+    }
+
+    setTransitioning(true);
+    const newScores = calculateNewScores(scores, [option], currentQuestion);
+    const newHistory = [...history, { scores, selectedOptions: [option], cubeIndex }];
     setHistory(newHistory);
     setScores(newScores);
-    moveToNext(newScores, newHistory);
+
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setSelectedOptions([]);
+        setCubeIndex(0);
+        setTransitioning(false);
+      } else {
+        finishQuiz(newScores, newHistory);
+      }
+    }, 400);
+  };
+
+  const handleMultiNext = () => {
+    if (selectedOptions.length === 0 || transitioning) return;
+    setTransitioning(true);
+    const newScores = calculateNewScores(scores, selectedOptions, currentQuestion);
+    const newHistory = [...history, { scores, selectedOptions, cubeIndex }];
+    setHistory(newHistory);
+    setScores(newScores);
+
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setSelectedOptions([]);
+        setCubeIndex(0);
+        setTransitioning(false);
+      } else {
+        finishQuiz(newScores, newHistory);
+      }
+    }, 400);
   };
 
   const handleBack = () => {
     if (currentQuestionIndex > 0 && history.length > 0) {
       const prevStep = history[history.length - 1];
-      const newHistory = history.slice(0, -1);
-
       setScores(prevStep.scores);
-      // For multi-select, we might want to keep the selection, 
-      // but for single select it's better to reset or show what was picked.
-      // Let's restore the selection.
       setSelectedOptions(prevStep.selectedOptions);
+      setCubeIndex(prevStep.cubeIndex || 0);
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setHistory(newHistory);
+      setHistory(history.slice(0, -1));
     }
   };
 
   const finishQuiz = (finalScores, finalHistory) => {
-    // 1. Determine the winning side for each dimension
     const getWinner = (sideA, sideB, dimension) => {
       if (finalScores[sideA] > finalScores[sideB]) return sideA;
       if (finalScores[sideB] > finalScores[sideA]) return sideB;
-
-      // Tie-breaking logic: Q9 > Q5–Q8 > Q1–Q4 > Q10/Q11/Q12
-      // We check the history to see which side was picked in higher-weight questions
       const tieBreakOrder = [9, 5, 6, 7, 8, 1, 2, 3, 4, 10, 11, 12];
-
       for (const qId of tieBreakOrder) {
         const step = finalHistory.find((h, idx) => questions[idx].id === qId);
         if (step) {
-          const pickedInStep = step.selectedOptions.some(opt => opt.impact && opt.impact[sideA]);
-          if (pickedInStep) return sideA;
-          const pickedBInStep = step.selectedOptions.some(opt => opt.impact && opt.impact[sideB]);
-          if (pickedBInStep) return sideB;
+          if (step.selectedOptions.some(opt => opt.impact && opt.impact[sideA])) return sideA;
+          if (step.selectedOptions.some(opt => opt.impact && opt.impact[sideB])) return sideB;
         }
       }
-
-      // Final default: Phase 2 (image) choice for that dimension
-      const phase2Map = {
-        selfExpansion: 5,
-        placeResonance: 6,
-        openness: 7,
-        structuration: 8
-      };
-      const p2Step = finalHistory.find((h, idx) => questions[idx].id === phase2Map[dimension]);
-      if (p2Step) {
-        const pickedA = p2Step.selectedOptions.some(opt => opt.impact && opt.impact[sideA]);
-        return pickedA ? sideA : sideB;
-      }
-
-      return sideA; // Absolute fallback
+      return sideA;
     };
 
     const winners = {
@@ -134,28 +143,6 @@ const Quiz = () => {
       openness: getWinner('explorer', 'comfortKeeper', 'openness'),
       structuration: getWinner('architect', 'flowWalker', 'structuration')
     };
-
-    // 2. Map winners to result key
-    // Mapping table from doc:
-    // High Self-Expansion (Soul Seeker)
-    // Soul Seeker + Connector + Explorer + Architect → Soul Pilgrim
-    // Soul Seeker + Connector + Explorer + Flow Walker → Wandering Poet
-    // Soul Seeker + Wanderer + Comfort Keeper + Architect → Inner Guardian
-    // Soul Seeker + Wanderer + Explorer + Flow Walker → Dream Walker
-    // Soul Seeker + Connector + Comfort Keeper + Architect → Silent Philosopher
-    // Soul Seeker + Connector + Comfort Keeper + Flow Walker → Mindful Artisan
-    // Soul Seeker + Wanderer + Explorer + Architect → Insight Scholar
-    // Soul Seeker + Wanderer + Comfort Keeper + Flow Walker → Spirit Nomad
-
-    // Low Self-Expansion (Pleasure Seeker)
-    // Pleasure Seeker + Connector + Explorer + Flow Walker → Festival Mover
-    // Pleasure Seeker + Connector + Explorer + Architect → Urban Adventurer
-    // Pleasure Seeker + Connector + Comfort Keeper + Architect → Heritage Keeper
-    // Pleasure Seeker + Connector + Comfort Keeper + Flow Walker → Serene Bonvivant
-    // Pleasure Seeker + Wanderer + Explorer + Architect → Solo Observer
-    // Pleasure Seeker + Wanderer + Explorer + Flow Walker → Gentle Drifter
-    // Pleasure Seeker + Wanderer + Comfort Keeper + Flow Walker → Calm Drifter
-    // Pleasure Seeker + Wanderer + Comfort Keeper + Architect → Classic Planner
 
     const mapping = {
       'soulSeeker-connector-explorer-architect': 'Soul Pilgrim',
@@ -178,18 +165,15 @@ const Quiz = () => {
 
     const resultKey = `${winners.selfExpansion}-${winners.placeResonance}-${winners.openness}-${winners.structuration}`;
     const archetype = mapping[resultKey];
-
-    // Find the personality type object by name
     const result = Object.values(personalityTypes).find(type => type.name === archetype) || personalityTypes['high-high-high-high'];
-
     navigate('/result', { state: { result, scores: finalScores, winners } });
   };
 
-  const getPhase = () => {
-    if (currentQuestionIndex < 4) return "Phase 1 · Rational Orientation";
-    if (currentQuestionIndex < 8) return "Phase 2 · Intuitive Projection";
-    return "Phase 3 · Integrative & Situational";
-  };
+  const currentOption = currentQuestion.options[cubeIndex];
+  const isSelected = selectedOptions.find(o => o.id === currentOption?.id);
+
+  // For multi-select: show all options as cube faces you slide through
+  // The cube shows one face at a time; left/right arrows + drag to navigate
 
   return (
     <div className="quiz-container">
@@ -197,21 +181,19 @@ const Quiz = () => {
         <div className="progress-fill" style={{ width: `${progress}%` }}></div>
       </div>
 
-      <div className="container quiz-content">
-        <div className="quiz-card fade-in" key={currentQuestion.id}>
+      <div className="quiz-content">
+        <div className="quiz-card" key={currentQuestion.id}>
           <div className="quiz-header">
             <div className="header-left">
               {currentQuestionIndex > 0 && (
                 <button className="back-button" onClick={handleBack}>
-                  <ArrowLeft size={20} /> <span>Back</span>
+                  <ArrowLeft size={18} /> Back
                 </button>
               )}
             </div>
             <div className="header-right">
               <span className="phase-tag">{getPhase()}</span>
-              <div className="question-number">
-                {currentQuestionIndex + 1} / {questions.length}
-              </div>
+              <span className="question-number">{currentQuestionIndex + 1} / {questions.length}</span>
             </div>
           </div>
 
@@ -220,46 +202,102 @@ const Quiz = () => {
             <p className="question-subtext">{currentQuestion.subtext}</p>
           )}
 
-          <div className="options-grid">
-            {currentQuestion.options.map((option, index) => {
-              const isSelected = selectedOptions.find(o => o.id === option.id);
-              return (
+          {/* Cube slider */}
+          <div className="cube-area">
+            {/* Dot indicators */}
+            <div className="cube-dots">
+              {currentQuestion.options.map((_, i) => (
                 <button
-                  key={index}
-                  className={`option-card ${currentQuestion.type === 'image' ? 'image-option' : ''} ${isSelected ? 'selected' : ''}`}
-                  onClick={() => handleOptionClick(option)}
+                  key={i}
+                  className={`cube-dot ${i === cubeIndex ? 'active' : ''}`}
+                  onClick={() => setCubeIndex(i)}
+                  aria-label={`Option ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Cube track */}
+            <div className="cube-track-wrapper">
+              {totalFaces > 1 && (
+                <button
+                  className="cube-nav-btn cube-nav-left"
+                  onClick={() => navigateCube(-1)}
+                  aria-label="Previous option"
                 >
-                  {currentQuestion.type === 'image' && (
-                    <div className="option-image-wrapper">
-                      <div className="media-placeholder">
-                        <p>[Image {option.id} Placeholder]</p>
-                      </div>
-                    </div>
-                  )}
-                  <div className="option-content">
-                    <div className="option-text">{option.text}</div>
-                    {!currentQuestion.multiSelect && currentQuestion.type !== 'image' && (
-                      <div className="option-arrow">
-                        <ArrowRight size={20} />
-                      </div>
-                    )}
-                    {currentQuestion.multiSelect && isSelected && (
-                      <div className="option-check">✓</div>
-                    )}
-                  </div>
+                  <ChevronLeft size={24} />
                 </button>
-              );
-            })}
+              )}
+
+              <div
+                className="cube-track"
+                ref={cubeRef}
+                onMouseDown={e => handleDragStart(e.clientX)}
+                onMouseUp={e => handleDragEnd(e.clientX)}
+                onMouseLeave={e => isDragging && handleDragEnd(e.clientX)}
+                onTouchStart={e => handleDragStart(e.touches[0].clientX)}
+                onTouchEnd={e => handleDragEnd(e.changedTouches[0].clientX)}
+              >
+                <div
+                  className="cube-slider"
+                  style={{ transform: `translateX(calc(-${cubeIndex * 100}%))` }}
+                >
+                  {currentQuestion.options.map((option, i) => {
+                    const sel = selectedOptions.find(o => o.id === option.id);
+                    return (
+                      <div
+                        key={option.id}
+                        className={`cube-face ${sel ? 'cube-face-selected' : ''}`}
+                        onClick={() => {
+                          if (i === cubeIndex) commitSelection(option);
+                        }}
+                      >
+                        <div className="cube-face-inner">
+                          <div className="cube-option-label">Option {String.fromCharCode(65 + i)}</div>
+                          <p className="cube-option-text">{option.text}</p>
+                          {sel && <div className="cube-check-mark">✓</div>}
+                          {!currentQuestion.multiSelect && (
+                            <div className="cube-select-hint">
+                              {i === cubeIndex ? 'Tap to select' : ''}
+                            </div>
+                          )}
+                          {currentQuestion.multiSelect && (
+                            <div className="cube-select-hint">
+                              {i === cubeIndex ? (sel ? 'Tap to deselect' : 'Tap to select') : ''}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {totalFaces > 1 && (
+                <button
+                  className="cube-nav-btn cube-nav-right"
+                  onClick={() => navigateCube(1)}
+                  aria-label="Next option"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              )}
+            </div>
+
+            {/* Swipe hint */}
+            {totalFaces > 1 && (
+              <p className="swipe-hint">← Slide to explore all options →</p>
+            )}
           </div>
 
+          {/* Multi-select confirm */}
           {currentQuestion.multiSelect && (
             <div className="quiz-actions">
               <button
-                className="btn-primary"
+                className="btn-confirm"
                 disabled={selectedOptions.length === 0}
-                onClick={handleNextClick}
+                onClick={handleMultiNext}
               >
-                Continue <ArrowRight size={20} style={{ marginLeft: '8px' }} />
+                Confirm ({selectedOptions.length}/{currentQuestion.maxSelect || 1} selected)
               </button>
             </div>
           )}
@@ -269,8 +307,8 @@ const Quiz = () => {
       <style>{`
         .quiz-container {
           min-height: 100vh;
-          background-color: var(--color-bg-paper);
-          padding-top: 80px; /* Header offset */
+          background: linear-gradient(160deg, #faf8f5 0%, #f0ebe3 100%);
+          padding-top: 80px;
           display: flex;
           flex-direction: column;
         }
@@ -280,14 +318,14 @@ const Quiz = () => {
           top: 0;
           left: 0;
           width: 100%;
-          height: 6px;
-          background-color: rgba(0,0,0,0.05);
-          z-index: 100;
+          height: 4px;
+          background: rgba(0,0,0,0.06);
+          z-index: 200;
         }
 
         .progress-fill {
           height: 100%;
-          background-color: var(--color-accent-terracotta);
+          background: var(--color-accent-terracotta);
           transition: width 0.5s ease;
         }
 
@@ -296,206 +334,267 @@ const Quiz = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding-bottom: 40px;
+          padding: 24px 16px 48px;
         }
 
         .quiz-card {
           background: #fff;
           width: 100%;
-          max-width: 700px;
-          padding: 60px 40px;
-          border-radius: var(--border-radius-lg);
-          box-shadow: var(--shadow-card);
-          text-align: center;
-          border: 1px solid rgba(0,0,0,0.02);
+          max-width: 680px;
+          padding: 48px 40px 40px;
+          border-radius: 20px;
+          box-shadow: 0 8px 48px rgba(0,0,0,0.08);
         }
 
         .quiz-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 32px;
-          min-height: 40px;
+          margin-bottom: 36px;
         }
 
-        .header-left {
-          display: flex;
-          align-items: center;
-        }
-
-        .header-right {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
+        .header-left { display: flex; align-items: center; min-width: 80px; }
+        .header-right { display: flex; align-items: center; gap: 14px; }
 
         .back-button {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           background: none;
           border: none;
           color: var(--color-text-secondary);
           cursor: pointer;
-          font-family: var(--font-body);
           font-size: 0.9rem;
-          padding: 8px 0;
-          transition: color 0.2s ease;
+          padding: 6px 0;
+          transition: color 0.2s;
         }
-
-        .back-button:hover {
-          color: var(--color-accent-terracotta);
-        }
+        .back-button:hover { color: var(--color-accent-terracotta); }
 
         .phase-tag {
-          background-color: var(--color-accent-teal);
+          background: var(--color-accent-teal);
           color: #fff;
-          padding: 6px 16px;
+          padding: 5px 14px;
           border-radius: 20px;
-          font-size: 0.8rem;
-          font-weight: 600;
+          font-size: 0.75rem;
+          font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.06em;
         }
 
         .question-number {
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--color-text-secondary);
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 600;
+          color: var(--color-text-secondary);
+          letter-spacing: 0.08em;
         }
 
         .question-text {
-          font-size: 2rem;
-          margin-bottom: 16px;
+          font-size: 1.7rem;
           color: var(--color-text-primary);
+          margin-bottom: 10px;
+          line-height: 1.3;
+          text-align: center;
         }
 
         .question-subtext {
-          font-size: 1.1rem;
+          font-size: 1rem;
           color: var(--color-text-secondary);
-          margin-bottom: 32px;
+          margin-bottom: 28px;
+          font-style: italic;
+          text-align: center;
+        }
+
+        /* ── Cube Area ── */
+        .cube-area {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          margin-top: 32px;
+        }
+
+        .cube-dots {
+          display: flex;
+          gap: 8px;
+        }
+
+        .cube-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: none;
+          background: rgba(0,0,0,0.15);
+          cursor: pointer;
+          padding: 0;
+          transition: background 0.25s, transform 0.25s;
+        }
+        .cube-dot.active {
+          background: var(--color-accent-terracotta);
+          transform: scale(1.35);
+        }
+
+        .cube-track-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          width: 100%;
+        }
+
+        .cube-nav-btn {
+          flex-shrink: 0;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: 2px solid rgba(74,59,50,0.12);
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: var(--color-text-primary);
+          transition: all 0.2s;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .cube-nav-btn:hover {
+          border-color: var(--color-accent-terracotta);
+          color: var(--color-accent-terracotta);
+          box-shadow: 0 4px 16px rgba(192,108,84,0.15);
+        }
+
+        .cube-track {
+          flex: 1;
+          overflow: hidden;
+          border-radius: 16px;
+          cursor: grab;
+          user-select: none;
+        }
+        .cube-track:active { cursor: grabbing; }
+
+        .cube-slider {
+          display: flex;
+          transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cube-face {
+          flex: 0 0 100%;
+          min-height: 200px;
+          background: linear-gradient(135deg, #f9f6f2 0%, #f2ece3 100%);
+          border: 2.5px solid rgba(74,59,50,0.1);
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 32px 28px;
+          cursor: pointer;
+          transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+          box-sizing: border-box;
+        }
+
+        .cube-face:hover {
+          border-color: var(--color-accent-terracotta);
+          background: linear-gradient(135deg, #fdf8f5 0%, #f9ede8 100%);
+          box-shadow: 0 8px 32px rgba(192,108,84,0.12);
+        }
+
+        .cube-face-selected {
+          border-color: var(--color-accent-terracotta) !important;
+          background: linear-gradient(135deg, #fdf1ec 0%, #f9e0d8 100%) !important;
+          box-shadow: 0 8px 32px rgba(192,108,84,0.18) !important;
+        }
+
+        .cube-face-inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 12px;
+          width: 100%;
+        }
+
+        .cube-option-label {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          color: var(--color-accent-terracotta);
+          opacity: 0.8;
+        }
+
+        .cube-option-text {
+          font-size: 1.15rem;
+          color: var(--color-text-primary);
+          line-height: 1.55;
+          margin: 0;
+          font-family: var(--font-body);
+        }
+
+        .cube-check-mark {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: var(--color-accent-terracotta);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1rem;
+          font-weight: 700;
+        }
+
+        .cube-select-hint {
+          font-size: 0.8rem;
+          color: var(--color-text-secondary);
+          min-height: 18px;
           font-style: italic;
         }
 
-        .media-placeholder {
-            background: #f8f8f8;
-            border: 1px dashed #ddd;
-            padding: 40px 20px;
-            border-radius: 8px;
-            color: #aaa;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
-        }
-
-        .options-grid {
-          display: grid;
-          gap: 20px;
-          grid-template-columns: 1fr;
-        }
-
-        .quiz-card:has(.image-option) .options-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        @media (max-width: 600px) {
-          .quiz-card:has(.image-option) .options-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        .option-card {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          padding: 0;
-          background-color: #fff;
-          border: 2px solid rgba(74, 59, 50, 0.1);
-          border-radius: var(--border-radius-md);
-          text-align: left;
-          transition: all 0.2s ease;
-          cursor: pointer;
-          overflow: hidden;
-        }
-
-        .option-card:not(.image-option) {
-          flex-direction: row;
-          align-items: center;
-        }
-
-        .option-card:hover {
-          border-color: var(--color-accent-terracotta);
-          background-color: rgba(192, 108, 84, 0.03);
-          transform: translateY(-2px);
-        }
-
-        .option-card.selected {
-          border-color: var(--color-accent-terracotta);
-          background-color: rgba(192, 108, 84, 0.08);
-          box-shadow: 0 0 0 1px var(--color-accent-terracotta);
-        }
-
-        .option-icon {
-          font-size: 2rem;
-          margin-right: 24px;
-        }
-
-        .option-image-wrapper {
-          width: 100%;
-          aspect-ratio: 16 / 9;
-        }
-
-        .option-image-wrapper .media-placeholder {
-          height: 100%;
-          margin-bottom: 0;
-          border-radius: 0;
-          border: none;
-          border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .option-content {
-          padding: 24px 32px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex: 1;
-          width: 100%;
-        }
-
-        .option-text {
-          flex: 1;
-          font-size: 1.1rem;
-          font-family: var(--font-body);
-          color: var(--color-text-primary);
-          line-height: 1.4;
-        }
-
-        .option-check {
-          color: var(--color-accent-terracotta);
-          font-weight: bold;
-          font-size: 1.2rem;
-          margin-left: 12px;
-        }
-
-        .option-card:hover .option-arrow {
-          opacity: 1;
-          transform: translateX(0);
+        .swipe-hint {
+          font-size: 0.8rem;
+          color: var(--color-text-secondary);
+          opacity: 0.6;
+          margin: 0;
+          letter-spacing: 0.04em;
         }
 
         .quiz-actions {
-          margin-top: 40px;
+          margin-top: 32px;
           display: flex;
           justify-content: center;
         }
 
-        .btn-primary:disabled {
-          background-color: #ccc;
-          cursor: not-allowed;
+        .btn-confirm {
+          background: var(--color-accent-terracotta);
+          color: #fff;
+          border: none;
+          padding: 14px 36px;
+          border-radius: 40px;
+          font-size: 1rem;
+          font-weight: 600;
+          font-family: var(--font-body);
+          cursor: pointer;
+          transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+          box-shadow: 0 4px 16px rgba(192,108,84,0.25);
+        }
+
+        .btn-confirm:hover:not(:disabled) {
+          background: #b05840;
+          box-shadow: 0 6px 24px rgba(192,108,84,0.35);
+          transform: translateY(-1px);
+        }
+
+        .btn-confirm:disabled {
+          background: #ccc;
           box-shadow: none;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        @media (max-width: 600px) {
+          .quiz-card { padding: 32px 20px 28px; }
+          .question-text { font-size: 1.4rem; }
+          .cube-face { min-height: 160px; padding: 24px 20px; }
+          .cube-option-text { font-size: 1rem; }
+          .cube-nav-btn { width: 36px; height: 36px; }
         }
       `}</style>
     </div>
