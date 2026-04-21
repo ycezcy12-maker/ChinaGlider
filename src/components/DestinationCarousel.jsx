@@ -84,7 +84,7 @@ const DestinationCarousel = () => {
       <div className="hero-carousel-content">
         <div key={currentIndex} className="slide-text-block fade-up">
           <p className="slide-tagline">{current.tagline}</p>
-          <h1 className="slide-title">{current.title}</h1>
+          <h1 className="slide-title" style={current.id === 4 ? { whiteSpace: 'nowrap' } : {}}>{current.title}</h1>
           {current.subtitle && (
             <h2 className="slide-subtitle">{current.subtitle}</h2>
           )}
@@ -215,7 +215,6 @@ const DestinationCarousel = () => {
           margin-bottom: 6px;
           color: #1a1410;
           letter-spacing: -0.02em;
-          white-space: nowrap;
         }
 
         .slide-subtitle {
