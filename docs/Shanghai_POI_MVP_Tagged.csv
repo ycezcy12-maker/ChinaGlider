@@ -1,4 +1,4 @@
-﻿poi_id,name,province,city,district,address,official_category,source_official,source_blog,content_type,exploration_level,social_density,structure_level,needs_manual_check
+poi_id,name,province,city,district,address,official_category,source_official,source_blog,content_type,exploration_level,social_density,structure_level,needs_manual_check
 1,东方明珠广播电视塔,上海市,上海市,浦东新区,浦东新区世纪大道 1 号,5A 级景区,TRUE,FALSE,general,iconic,mixed,highly-structured,FALSE
 2,上海野生动物园,上海市,上海市,浦东新区,浦东新区南六公路 178 号,5A 级景区,TRUE,FALSE,general,iconic,mixed,highly-structured,FALSE
 3,上海科技馆,上海市,上海市,浦东新区,浦东新区世纪大道 2000 号,5A 级景区,TRUE,FALSE,general,iconic,mixed,highly-structured,FALSE
