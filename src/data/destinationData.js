@@ -3,7 +3,7 @@ import shanghaiAutumnImage from '../assets/上海秋日街景_1822x1024_完整�
 import beijingImage from '../assets/generation-05921bae-3256-4616-9d0f-197191b4f940.png';
 import sichuanImage from '../assets/generation-c22b3672-4ea8-46f1-8289-b375d1ac0a93.png';
 import guilinImage from '../assets/pexels-quang-nguyen-vinh-222549-6346494.jpg';
-import silkRoadImage from '../assets/沙漠.png';
+import silkRoadImage from '../assets/沙漠3.png';
 
 export const slides = [
   {
