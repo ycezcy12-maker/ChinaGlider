@@ -1,7 +1,9 @@
 export function extractLightColor(imageUrl) {
   return new Promise((resolve) => {
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+      img.crossOrigin = 'anonymous';
+    }
     img.onload = () => {
       const canvas = document.createElement('canvas');
       const sampleWidth = Math.min(img.naturalWidth, 400);
