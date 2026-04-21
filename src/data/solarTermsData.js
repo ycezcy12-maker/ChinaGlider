@@ -3,6 +3,9 @@ import yushuiImage from '../assets/2.雨水.jpg';
 import jingzheImage from '../assets/3.惊蛰.jpg';
 import chunfenImage from '../assets/4.春分.jpg';
 import qingmingImage from '../assets/5.清明.png';
+import lixiaImage from '../assets/立夏.jpg';
+import xiaomanImage from '../assets/小满.jpg';
+import xiazhiImage from '../assets/夏至.png';
 
 export const solarTerms = [
   {
@@ -160,7 +163,7 @@ export const solarTerms = [
     meaning: "Beginning of Summer",
     date: "May 5–7",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/33231945/pexels-photo-33231945.jpeg",
+    imageUrl: lixiaImage,
     tags: ["Clear Skies", "Mountain Ridges", "Naxi Culture"],
     travelClue: "Before the heat sets in — the clearest skies and most comfortable highland temperatures of the year.",
     destinations: [
@@ -183,7 +186,7 @@ export const solarTerms = [
     meaning: "Lesser Fullness",
     date: "May 20–22",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/1726619/pexels-photo-1726619.jpeg",
+    imageUrl: xiaomanImage,
     tags: ["Mirror Terraces", "Alpine Lakes", "Sky Reflection"],
     travelClue: "Flooded terraces become giant mirrors — the most photogenic window of the year at Yuanyang.",
     destinations: [
@@ -229,7 +232,7 @@ export const solarTerms = [
     meaning: "Summer Solstice",
     date: "Jun 21–22",
     season: "summer",
-    imageUrl: "https://images.pexels.com/photos/6877860/pexels-photo-6877860.jpeg",
+    imageUrl: xiazhiImage,
     tags: ["Endless Steppe", "Longest Day", "Grassland Ride"],
     travelClue: "Longest day of the year — ride the grasslands of Inner Mongolia under a sky that never seems to darken.",
     destinations: [
