@@ -51,9 +51,9 @@ const Result = () => {
   return (
     <div className="result-page">
       <div className="result-hero">
-        <p className="pre-label">Travel Soul Spectrum</p>
+        <p className="pre-label">Travel Persona Spectrum</p>
         <h1 className="archetype-name">{result.name}</h1>
-        <p className="archetype-title">{result.title}</p>
+        <p className="archetype-title">{result.vibe}</p>
         <blockquote className="archetype-quote">"{result.quote}"</blockquote>
       </div>
 
@@ -90,16 +90,10 @@ const Result = () => {
             </div>
           </div>
 
-          {/* Recommendation */}
-          <div className="result-section result-recommendation-card">
-            <span className="section-label">Curated For You</span>
-            <p className="recommendation-text">{result.recommendation}</p>
-          </div>
-
         </div>
 
         <div className="result-cta">
-          <p className="cta-hint">Ready to explore spots tailored to your travel soul?</p>
+          <p className="cta-hint">Ready to explore spots tailored to your travel persona?</p>
           <Link to="/poi-selection" state={{ result, scores }} className="cta-btn">
             Explore Your Experience Pool
             <ArrowRight size={18} style={{ marginLeft: '10px' }} />
@@ -286,19 +280,6 @@ const Result = () => {
           white-space: nowrap;
           min-width: 80px;
           text-align: right;
-        }
-
-        /* Recommendation */
-        .result-recommendation-card {
-          border-left: 4px solid var(--color-accent-terracotta);
-          background: linear-gradient(135deg, #fff 0%, #fdf6f3 100%);
-        }
-
-        .recommendation-text {
-          font-size: 1.05rem;
-          color: var(--color-text-primary);
-          line-height: 1.7;
-          margin: 0;
         }
 
         /* CTA */
